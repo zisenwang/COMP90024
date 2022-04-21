@@ -1,7 +1,7 @@
 import os
 import io
 import logging
-# import couchdb
+import couchdb
 import argparse
 import time
 import json
@@ -12,7 +12,7 @@ from tweepy import Stream
 class TweetListener(Stream):
 
     def __init__(self,consumer_key,consumer_secret,access_token,access_token_secret,
-                 time_limit,number_of_tweets,file):
+                 time_limit:int,number_of_tweets:int,couchdb_server:str,file:str):
 
         super().__init__(consumer_key=consumer_key,consumer_secret=consumer_secret,
                          access_token=access_token,access_token_secret=access_token_secret)
@@ -24,6 +24,8 @@ class TweetListener(Stream):
         self.number_of_tweets = number_of_tweets
 
         self.file = file # switched to couchdb info later?
+
+        self.server = couchdb.Server(couchdb_server)
 
     def on_data(self, data):
         try:
@@ -40,7 +42,6 @@ class TweetListener(Stream):
             self.count += 1
 
             # check if this is a tweet in case of some other info
-
             if 'text' in tweet.keys():
 
                 '''
@@ -51,15 +52,25 @@ class TweetListener(Stream):
                 info can be pre-filtered here before stored to couchdb
                 need further test on wait_on_rate_limit whenever couchdb is done
                 '''
+                dbname = 'covid_tweets'
+                # dbname should be replaced by a more specific name to indicate the certain database
+                if dbname in self.server:
+                    db = self.server[dbname]
+                else:
+                    db = self.server.create(dbname)
 
-                with open(self.file, 'a') as my_file:
-                    json.dump(tweet, my_file)
-                    my_file.write('\n')
+                db.save(tweet)
+
+                # file saving
+                if self.file:
+                    with open(self.file, 'a') as my_file:
+                        json.dump(tweet, my_file)
+                        my_file.write('\n')
 
                 # print(tweet)
 
         except BaseException as e:
-            print(json.loads(data))
+            # print(json.loads(data))
             print(e)
 
 
@@ -85,7 +96,7 @@ if __name__ == "__main__":
     paser.add_argument("--time",type=int,default=24*60*60,help="How long do you want this stream to last")
     paser.add_argument("--limit", type=int, default=500000, help="How many tweets you want to search in stream")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
-
+    paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
     args = paser.parse_args()
 
     config = args.config  # path of the config file
@@ -125,9 +136,12 @@ if __name__ == "__main__":
     # default query
     # query = ['covid','virus','lockdown']
 
+    # if you want to store them to local file as well specify filename with file='XXX.json'
     stream = TweetListener(consumer_key=api_key,consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
-                           time_limit=args.time,number_of_tweets=args.limit,file='stream.json')
+                           time_limit=args.time,number_of_tweets=args.limit,
+                           couchdb_server='http://admin:admin@127.0.0.1:5984/',
+                           file=args.local)
 
 
     try:

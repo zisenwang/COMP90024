@@ -3,18 +3,20 @@ import json
 import argparse
 import time
 import tweepy
-# import couchdb
+import couchdb
 
 from sentiment_analyzer import simpleClassifier
 
 class SearchTweet():
 
-    def __init__(self,api: tweepy.API,file: str):
+    def __init__(self,api: tweepy.API,couchdb_server:str,file: str):
         # havent figured out on how to run this for a certain amount of time
         # self.time
 
         self.api = api
         self.file = file # possibly changed to couchdb credentials and whatnot
+
+        self.server = couchdb.Server(couchdb_server)
 
     def search(self,q,lang,geocode,limit):
         try:
@@ -38,9 +40,20 @@ class SearchTweet():
                         need further test on wait_on_rate_limit whenever couchdb is done
                         '''
 
-                        with open(self.file, 'a') as my_file:
-                            json.dump(tweet, my_file)
-                            my_file.write('\n')
+                        dbname = 'search_covid_tweets'
+                        # dbname should be replaced by a more specific name to indicate the certain database
+                        if dbname in self.server:
+                            db = self.server[dbname]
+                        else:
+                            db = self.server.create(dbname)
+
+                        db.save(tweet)
+
+                        # file saving
+                        if self.file:
+                            with open(self.file, 'a') as my_file:
+                                json.dump(tweet, my_file)
+                                my_file.write('\n')
 
                         # print(tweet)
 
@@ -55,7 +68,7 @@ if __name__ == "__main__":
 
     paser.add_argument("--limit", type=int, default=10000, help="How many tweets you want to search in the last week")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
-
+    paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
     args = paser.parse_args()
 
     config = args.config  # path of the config file
@@ -112,7 +125,8 @@ if __name__ == "__main__":
         #     searchTweets.search(q=query,lang='en',geocode=geocode,limit=lim)
 
         print('search started')
-        searchTweets = SearchTweet(api=api,file='search.json')  # file:name of the file to store, possibly changed to db configuration later
+        # if you want to store them to local file as well, specify filename with file='XXX.json'
+        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@127.0.0.1:5984/',file=args.local)
         searchTweets.search(q=query, lang='en', geocode=geocode, limit=args.limit)  # limit = lim
 
     except KeyboardInterrupt:
