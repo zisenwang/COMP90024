@@ -5,7 +5,7 @@ import couchdb
 import argparse
 import time
 import json
-from sentiment_analyzer import simpleClassifier
+from utils import *
 from tweepy import Stream
 
 

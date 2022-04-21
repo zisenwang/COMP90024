@@ -5,7 +5,7 @@ import time
 import tweepy
 import couchdb
 
-from sentiment_analyzer import simpleClassifier
+from utils import *
 
 class SearchTweet():
 
