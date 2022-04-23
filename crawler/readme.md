@@ -14,4 +14,9 @@ You might also want to change the arguments in these two scripts for a more expl
 python3 ./tweet_harvester_stream.py --time 5 --limit 10 --config './config.json'
 ```
 Current available arguments are 'limit' and 'time'. Time is only for stream.
-Limit is the number of tweets you want to harvest. Time is how long you want the stream to last.
+Limit is the number of tweets you want to harvest. Time is how long you want the stream to last.<br>
+```
+python3 ./tweet_harvester_stream.py --time 5 --limit 10 --local 'stream.json' --config './config.json'
+```
+Now you can also use --local argument to specify the local json file to store data.
+
