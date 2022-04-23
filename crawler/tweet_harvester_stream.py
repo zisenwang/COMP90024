@@ -11,8 +11,9 @@ from tweepy import Stream
 
 class TweetListener(Stream):
 
-    def __init__(self,consumer_key,consumer_secret,access_token,access_token_secret,
-                 time_limit:int,number_of_tweets:int,couchdb_server:str,file:str):
+    def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret,
+                 time_limit: int, number_of_tweets: int,
+                 couchdb_server: str, file: str, db_name: str):
 
         super().__init__(consumer_key=consumer_key,consumer_secret=consumer_secret,
                          access_token=access_token,access_token_secret=access_token_secret)
@@ -25,7 +26,10 @@ class TweetListener(Stream):
 
         self.file = file # switched to couchdb info later?
 
-        self.server = couchdb.Server(couchdb_server)
+        if db_name in couchdb.Server(couchdb_server):
+            self.db = couchdb.Server(couchdb_server)[db_name]
+        else:
+            self.db = couchdb.Server(couchdb_server).create(db_name)
 
     def on_data(self, data):
         try:
@@ -43,23 +47,17 @@ class TweetListener(Stream):
 
             # check if this is a tweet in case of some other info
             if 'text' in tweet.keys():
+                clf = simpleClassifier()
+                if tweet['id_str'] not in self.db:
+                    dic = {}
+                    dic['_id'] = tweet["id_str"]
+                    dic['text'] = tweet['text']
+                    dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
+                    dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
+                    dic['senti'] = clf.classify(tweet['text'])
 
-                '''
-                potential feasible fields, id text geo place lang...
-                do sth with tweets fields, for example
-                # if tweet['geo']:
-                #     print(tweet['geo'])
-                info can be pre-filtered here before stored to couchdb
-                need further test on wait_on_rate_limit whenever couchdb is done
-                '''
-                dbname = 'covid_tweets'
-                # dbname should be replaced by a more specific name to indicate the certain database
-                if dbname in self.server:
-                    db = self.server[dbname]
-                else:
-                    db = self.server.create(dbname)
-
-                db.save(tweet)
+                    self.db.save(dic)
+                    del dic
 
                 # file saving
                 if self.file:
@@ -95,6 +93,7 @@ if __name__ == "__main__":
 
     paser.add_argument("--time",type=int,default=24*60*60,help="How long do you want this stream to last")
     paser.add_argument("--limit", type=int, default=500000, help="How many tweets you want to search in stream")
+    paser.add_argument("--dbname", type=str, default="tweets", help="The name of the database you wan to store")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
     paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
     args = paser.parse_args()
@@ -141,7 +140,7 @@ if __name__ == "__main__":
                            access_token=access_token,access_token_secret=access_token_secret,
                            time_limit=args.time,number_of_tweets=args.limit,
                            couchdb_server='http://admin:admin@127.0.0.1:5984/',
-                           file=args.local)
+                           db_name=args.dbname, file=args.local)
 
 
     try:

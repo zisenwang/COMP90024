@@ -9,14 +9,17 @@ from utils import *
 
 class SearchTweet():
 
-    def __init__(self,api: tweepy.API,couchdb_server:str,file: str):
+    def __init__(self,api: tweepy.API,db_name:str,couchdb_server:str,file: str):
         # havent figured out on how to run this for a certain amount of time
         # self.time
 
         self.api = api
         self.file = file # possibly changed to couchdb credentials and whatnot
 
-        self.server = couchdb.Server(couchdb_server)
+        if db_name in couchdb.Server(couchdb_server):
+            self.db = couchdb.Server(couchdb_server)[db_name]
+        else:
+            self.db = couchdb.Server(couchdb_server).create(db_name)
 
     def search(self,q,lang,geocode,limit):
         try:
@@ -30,24 +33,17 @@ class SearchTweet():
                 for stat in statuses:
                     tweet = stat._json
                     if 'full_text' in tweet:
+                        clf = simpleClassifier()
+                        if tweet['id_str'] not in self.db:
+                            dic = {}
+                            dic['_id'] = tweet["id_str"]
+                            dic['text'] = tweet['full_text']
+                            dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
+                            dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
+                            dic['senti'] = clf.classify(tweet['full_text'])
 
-                        '''
-                        potential feasible fields, id text geo place lang...
-                        do sth with tweets fields, for example
-                        # if tweet['geo']:
-                        #     print(tweet['geo'])
-                        info can be pre-filtered here before stored to couchdb
-                        need further test on wait_on_rate_limit whenever couchdb is done
-                        '''
-
-                        dbname = 'search_covid_tweets'
-                        # dbname should be replaced by a more specific name to indicate the certain database
-                        if dbname in self.server:
-                            db = self.server[dbname]
-                        else:
-                            db = self.server.create(dbname)
-
-                        db.save(tweet)
+                            self.db.save(dic)
+                            del dic
 
                         # file saving
                         if self.file:
@@ -67,8 +63,10 @@ if __name__ == "__main__":
     paser = argparse.ArgumentParser()
 
     paser.add_argument("--limit", type=int, default=10000, help="How many tweets you want to search in the last week")
+    paser.add_argument("--dbname", type=str, default="tweets", help="The name of the database you wan to store")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
-    paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
+    paser.add_argument("--local", type=str, default=None, help="Specify the local file you want to store the data in .json")
+
     args = paser.parse_args()
 
     config = args.config  # path of the config file
@@ -126,7 +124,8 @@ if __name__ == "__main__":
 
         print('search started')
         # if you want to store them to local file as well, specify filename with file='XXX.json'
-        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@127.0.0.1:5984/',file=args.local)
+        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@127.0.0.1:5984/',
+                                   db_name=args.dbname,file=args.local)
         searchTweets.search(q=query, lang='en', geocode=geocode, limit=args.limit)  # limit = lim
 
     except KeyboardInterrupt:
