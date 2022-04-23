@@ -19,4 +19,7 @@ Limit is the number of tweets you want to harvest. Time is how long you want the
 python3 ./tweet_harvester_stream.py --time 5 --limit 10 --local 'stream.json' --config './config.json'
 ```
 Now you can also use --local argument to specify the local json file to store data.
-
+```
+python3 ./tweet_harvester_stream.py --time 5 --limit 10 --dbname 'stream_covid_tweets' --local 'stream.json' --config './config.json'
+```
+Another argument --dbname has been added to specify the name of the database where you want to store the tweets. By default, it is set to "tweets".
