@@ -44,7 +44,6 @@ class couchDataBase(object):
 
     def readViews(self,path):
         l = os.listdir(path)
-        l.remove('.DS_Store')
         for i in l:
             if 'map.js' not in os.listdir(os.path.join("./views", i)):
                 l.remove(i)
