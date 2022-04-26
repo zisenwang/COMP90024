@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
         print('search started')
         # if you want to store them to local file as well, specify filename with file='XXX.json'
-        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@127.0.0.1:5984/',
+        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@172.26.132.194:5984/',
                                    db_name=args.dbname,file=args.local)
         searchTweets.search(q=query, lang='en', geocode=geocode, limit=args.limit)  # limit = lim
 
