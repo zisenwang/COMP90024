@@ -139,7 +139,7 @@ if __name__ == "__main__":
     stream = TweetListener(consumer_key=api_key,consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
                            time_limit=args.time,number_of_tweets=args.limit,
-                           couchdb_server='http://admin:admin@127.0.0.1:5984/',
+                           couchdb_server='http://admin:admin@172.26.132.194:5984/',
                            db_name=args.dbname, file=args.local)
 
 
