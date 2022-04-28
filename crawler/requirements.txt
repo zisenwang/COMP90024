@@ -1,0 +1,5 @@
+argparse
+tweepy
+couchdb
+nltk
+textblob
