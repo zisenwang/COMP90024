@@ -1,6 +1,5 @@
 import os
 import io
-import logging
 import couchdb
 import argparse
 import time
@@ -51,10 +50,11 @@ class TweetListener(Stream):
                 if tweet['id_str'] not in self.db:
                     dic = {}
                     dic['_id'] = tweet["id_str"]
-                    dic['text'] = tweet['text']
+                    dic['text'] = clf.preprocess(tweet['text'])
                     dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
                     dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
-                    dic['senti'] = clf.classify(tweet['text'])
+                    dic['senti'] = clf.sentiment(dic['text'])
+                    dic['label'] = 'positive' if dic['senti']['polarity'] > 0 else 'negative'
 
                     self.db.save(dic)
                     del dic
@@ -70,7 +70,6 @@ class TweetListener(Stream):
         except BaseException as e:
             # print(json.loads(data))
             print(e)
-
 
     def on_request_error(self, status_code):
 
@@ -136,9 +135,9 @@ if __name__ == "__main__":
     # query = ['covid','virus','lockdown']
 
     # if you want to store them to local file as well specify filename with file='XXX.json'
-    stream = TweetListener(consumer_key=api_key,consumer_secret=api_secret,
+    stream = TweetListener(consumer_key=api_key, consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
-                           time_limit=args.time,number_of_tweets=args.limit,
+                           time_limit=args.time, number_of_tweets=args.limit,
                            couchdb_server='http://admin:admin@172.26.132.194:5984/',
                            db_name=args.dbname, file=args.local)
 
@@ -146,7 +145,13 @@ if __name__ == "__main__":
     try:
         # locations are bounding box for melb
         print("stream started")
-        stream.filter(languages=["en"], track=query,
+        # Bounding boxes do not act as filters for other filter parameters.
+        # For example track=twitter&locations=-122.75,36.8,-121.75,37.8
+        # would match any Tweets containing the term Twitter (even non-geo Tweets)
+        # OR coming from the San Francisco area.
+        stream.filter(track=query, languages=["en"],
                       locations=[144.593741856, -38.433859306, 145.512528832, -37.5112737225])
     except KeyboardInterrupt:
         stream.disconnect()
+
+

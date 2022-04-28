@@ -1,30 +1,58 @@
 import re
 import couchdb
 import os
+import nltk
 from textblob import TextBlob as tb
 
 class simpleClassifier(object):
+    def __init__(self):
+        with open('english','r') as f:
+            l = []
+            for i in f.readlines():
+                l.append(i.strip())
+        for i in ";,.?!:#%$-()<>''":
+            l.append(i)
+        self.stopwords = l
+        del l
 
-    def preprocess(self,x):
+    def tokenize(self,tweet):
+        l = []
+        for i in tweet.split():
+            l.append(i)
+        return l
+
+    def deleteStopwords(self, x):
+        list_of_words = [i.lower() for i in self.tokenize(x) if i not in self.stopwords and i != 'rt']
+        return ' '.join(list_of_words)
+
+    def preprocess(self, x):
         x = x.lower()
         x = x.encode('ascii', 'ignore').decode()
+        x = re.sub(r'\d +', '', x)
         x = re.sub(r'https*\S+', ' ', x)
         x = re.sub(r'@\S+', ' ', x)
         x = re.sub(r'#\S+', ' ', x)
         x = re.sub(r'\'\w+', '', x)
         x = re.sub(r'\w*\d+\w*', '', x)
         x = re.sub(r'\s{2,}', ' ', x)
-        return x
+        # return x
+        return self.deleteStopwords(x)
 
-    def classify(self,tweet):
+    def sentiment(self,tweet):
         """
-        :param tweet: specific tweet text
-        :return: one of 'positive' and negative
+        :param tweet: specific tweet text after preprocessing
+        :return: polarity and subjectivity
         """
-        # subjectivity
-        # take in a single tweet text data only
-        # certain threshold should be determined instead of 0
-        return 'positive' if tb(self.preprocess(tweet)).polarity > 0 else 'negative'
+        dic = {}
+        dic['polarity'] = tb(tweet).polarity
+        dic['subjectivity'] = tb(tweet).subjectivity
+        return dic
+
+    # def classify(self,tweet):
+    #     # take in a single tweet text data only
+    #     # certain threshold should be determined instead of 0
+    #     return 'positive' if tb(self.preprocess(tweet)).polarity > 0 else 'negative'
+
 
 class couchDataBase(object):
     def __init__(self,server:str,db_name:str):
@@ -44,6 +72,7 @@ class couchDataBase(object):
 
     def readViews(self,path):
         l = os.listdir(path)
+        # l.remove('.DS_Store')
         for i in l:
             if 'map.js' not in os.listdir(os.path.join("./views", i)):
                 l.remove(i)
@@ -101,17 +130,19 @@ class couchDataBase(object):
         else:
             print('no such designdoc')
 
-
-
 if __name__=='__main__':
 
     clf = simpleClassifier()
+    # (-1,1) bigger, more positive
     print(tb('i love you').polarity)
-    print(tb('i hate you').polarity)
+    # (0,1) bigger, more subjective
+    print(tb('i love you').subjectivity)
+    # print(tb('i hate you').polarity)
+    # print(tb('i hate you').subjectivity)
     # >0 positive
-    test1 = clf.classify('i love you')
+    test1 = clf.sentiment('i love you')
     # <0 negative
-    test2 = clf.classify('i hate you')
+    test2 = clf.sentiment('i hate you')
     print(test1,test2)
     pass
 

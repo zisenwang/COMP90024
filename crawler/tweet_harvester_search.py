@@ -37,10 +37,11 @@ class SearchTweet():
                         if tweet['id_str'] not in self.db:
                             dic = {}
                             dic['_id'] = tweet["id_str"]
-                            dic['text'] = tweet['full_text']
+                            dic['text'] = clf.preprocess(tweet['full_text'])
                             dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
                             dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
-                            dic['senti'] = clf.classify(tweet['full_text'])
+                            dic['senti'] = clf.sentiment(dic['text'])
+                            dic['label'] = 'positive' if dic['senti']['polarity'] > 0 else 'negative'
 
                             self.db.save(dic)
                             del dic
