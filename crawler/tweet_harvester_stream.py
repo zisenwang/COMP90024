@@ -127,6 +127,12 @@ if __name__ == "__main__":
             # retrieve key words to search
             query = configuration['KEY WORDS']
 
+            # retrieve location info
+            locations = configuration["LOCATIONS"]['bounding_box']
+
+            # retrieve specified dbname
+            dbname = args.dbname if args.dbname != "tweets" else configuration["DBNAME"]
+
     except IOError:
         print('The file path of the config file is probably wrong!')
         exit(1)
@@ -138,8 +144,8 @@ if __name__ == "__main__":
     stream = TweetListener(consumer_key=api_key, consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
                            time_limit=args.time, number_of_tweets=args.limit,
-                           couchdb_server='http://admin:admin@172.26.132.194:5984/',
-                           db_name=args.dbname, file=args.local)
+                           couchdb_server='http://admin:admin@127.0.0.1:5984/',
+                           db_name=dbname, file=args.local)
 
 
     try:
@@ -150,7 +156,8 @@ if __name__ == "__main__":
         # would match any Tweets containing the term Twitter (even non-geo Tweets)
         # OR coming from the San Francisco area.
         stream.filter(track=query, languages=["en"],
-                      locations=[144.593741856, -38.433859306, 145.512528832, -37.5112737225])
+                      locations=locations)
+
     except KeyboardInterrupt:
         stream.disconnect()
 
