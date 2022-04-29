@@ -91,7 +91,7 @@ if __name__ == "__main__":
     paser = argparse.ArgumentParser()
 
     paser.add_argument("--time",type=int,default=24*60*60,help="How long do you want this stream to last")
-    paser.add_argument("--limit", type=int, default=500000, help="How many tweets you want to search in stream")
+    paser.add_argument("--limit", type=int, default=50000, help="How many tweets you want to search in stream")
     paser.add_argument("--dbname", type=str, default="tweets", help="The name of the database you wan to store")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
     paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     stream = TweetListener(consumer_key=api_key, consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
                            time_limit=args.time, number_of_tweets=args.limit,
-                           couchdb_server='http://admin:admin@127.0.0.1:5984/',
+                           couchdb_server='http://admin:admin@172.26.132.194:5984/',
                            db_name=dbname, file=args.local)
 
 
