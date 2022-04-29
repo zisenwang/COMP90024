@@ -14,8 +14,8 @@ class TweetListener(Stream):
                  time_limit: int, number_of_tweets: int,
                  couchdb_server: str, file: str, db_name: str):
 
-        super().__init__(consumer_key=consumer_key,consumer_secret=consumer_secret,
-                         access_token=access_token,access_token_secret=access_token_secret)
+        super().__init__(consumer_key=consumer_key, consumer_secret=consumer_secret,
+                         access_token=access_token, access_token_secret=access_token_secret)
 
         self.start_time = time.time()
         self.time_limit = time_limit
@@ -90,11 +90,11 @@ if __name__ == "__main__":
     # argpaser
     paser = argparse.ArgumentParser()
 
-    paser.add_argument("--time",type=int,default=24*60*60,help="How long do you want this stream to last")
+    paser.add_argument("--time",type=int,default=24*60*60, help="How long do you want this stream to last")
     paser.add_argument("--limit", type=int, default=50000, help="How many tweets you want to search in stream")
     paser.add_argument("--dbname", type=str, default="tweets", help="The name of the database you wan to store")
     paser.add_argument("--config", type=str, default=None, help="Provide information for configuration.json:PATH")
-    paser.add_argument("--local",type=str,default=None,help="Specify the local file you want to store the data in .json")
+    paser.add_argument("--local",type=str,default=None, help="Specify the local file you want to store the data in .json")
     args = paser.parse_args()
 
     config = args.config  # path of the config file
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     stream = TweetListener(consumer_key=api_key, consumer_secret=api_secret,
                            access_token=access_token,access_token_secret=access_token_secret,
                            time_limit=args.time, number_of_tweets=args.limit,
-                           couchdb_server='http://admin:admin@172.26.132.194:5984/',
+                           couchdb_server='http://admin:admin@127.0.0.1:5984/',
                            db_name=dbname, file=args.local)
 
 
@@ -155,8 +155,8 @@ if __name__ == "__main__":
         # For example track=twitter&locations=-122.75,36.8,-121.75,37.8
         # would match any Tweets containing the term Twitter (even non-geo Tweets)
         # OR coming from the San Francisco area.
-        stream.filter(track=query, languages=["en"],
-                      locations=locations)
+        # stream.filter(track=query, languages=["en"], locations=locations)
+        stream.filter(languages=["en"], locations=locations)
 
     except KeyboardInterrupt:
         stream.disconnect()
