@@ -23,7 +23,7 @@ class TweetListener(Stream):
         self.count = 0
         self.number_of_tweets = number_of_tweets
 
-        self.file = file # switched to couchdb info later?
+        self.file = file
 
         if db_name in couchdb.Server(couchdb_server):
             self.db = couchdb.Server(couchdb_server)[db_name]
@@ -50,12 +50,14 @@ class TweetListener(Stream):
                 if tweet['id_str'] not in self.db:
                     dic = {}
                     dic['_id'] = tweet["id_str"]
+                    dic['created_time'] = tweet['created_at']
                     dic['text'] = clf.preprocess(tweet['text'])
                     dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
                     dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
                     dic['senti'] = clf.sentiment(dic['text'])
                     dic['label'] = 'positive' if dic['senti']['polarity'] > 0 else 'negative'
 
+                    # print(dic)
                     self.db.save(dic)
                     del dic
 
@@ -69,21 +71,20 @@ class TweetListener(Stream):
 
         except BaseException as e:
             # print(json.loads(data))
+            print('unknown error occurred')
             print(e)
+            return True
+
+        return True
 
     def on_request_error(self, status_code):
 
         if status_code == 429:
             print('Wait on rate limit!')
-            time.sleep(15*60+1)
+            time.sleep(15*60+10)
 
         else:
             print(status_code)
-
-
-    def on_connection_error(self):
-        self.disconnect()
-
 
 
 if __name__ == "__main__":
