@@ -131,24 +131,30 @@
         pieChart.dispose();
         cloud.dispose();
         time=document.getElementById("time").value.split("/");
-        keyword='{{ keyword }}';
-        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword=keyword",new Date(time[2],time[1],time[0]));//日期来自页面DOM
-        createPieChart("chart2","/main/pie?keyword=keyword");
-        createBarChart("chart3","/main/bar?keyword=keyword");
-        createCloud("chart4", "/main/cloud?keyword=keyword");
+        keyword=document.getElementById("keyword").value;
+        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        createPieChart("chart2","/main/pie?keyword="+keyword);
+        createBarChart("chart3","/main/bar?keyword="+keyword);
+        createCloud("chart4", "/main/cloud?keyword="+keyword);
     }
 
     // initiate page
 
     scenario='{{ scenario }}';
-    time=keyword=document.getElementById("time").value.split("/");
-    keyword=document.getElementById("keyword").value;
-    document.getElementById("time").addEventListener("change", updateCal);
+    var time=[];
+    if(document.getElementById("time").value==="") {
+        var cur=new Date();
+        time=[cur.getDate(),cur.getMonth()+1,cur.getYear()]
+    } else {
+        time=document.getElementById("time").value.split("/");
+    }
+    var keyword=document.getElementById("keyword").value;
+    console.log(time)
     document.getElementById(scenario.toLowerCase()).classList.add('active');
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
     document.getElementById("li").innerHTML=scenario+' Scenario of Main Page';
-    createLineChart("chart1","/main/line?date="+new Date(),new Date());//日期来自页面DOM
+    createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0]),new Date(time[2],time[1],time[0]));
     createPieChart("chart2","/main/pie");
     createBarChart("chart3","/main/bar");
     createCloud("chart4", "/main/cloud");
