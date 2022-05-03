@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>COMP90024 Assignment2 Team19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- Fonts  -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    <!-- Daterange Picker -->
+    <link rel="stylesheet" href="../static/css/daterangepicker-bs3.css">
+    <!-- Custom styles for this theme -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="../static/js/echarts.js"></script>
+    <script src="../static/js/echarts-wordcloud.js"></script>
+    <script src="../static/js/echarts-wordcloud.min.js"></script>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/charts.js"></script>
+    <script src="../static/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/js/jquery.navgoco.min.js"></script>
+    <script src="../static/js/app.js"></script>
+    <script src="../static/js/jsCalendar.js"></script>
+    <script src="../static/js/jsCalendar.datepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/jsCalendar.css">
+    <style>headfont {font-weight: 700;font-size:24px;font-family: Helvetica;}
+    headblock {float: left;width: 500px;height: 90px;padding:15px;}
+    </style>
+</head>
+
+<body>
+<section id="main-wrapper" class="theme-default">
+    <header id="header">
+        <headblock><headfont><a href ="/" id="title">COMP90024 Assignment2 Team19</a></headfont></headblock>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="hidden-xs hidden-sm">
+                <input id="time" type="text" class="search" oninput="updateCal()" placeholder="Select a date..." data-datepicker readonly="readonly"/>
+                <input id="keyword" type="text" class="search" placeholder="Search project...">
+                <button type="submit" onclick="submit()"></button>
+            </li>
+        </ul>
+    </header>
+    <!--sidebar left start-->
+    <aside class="sidebar sidebar-left">
+        <nav>
+            <h5 class="sidebar-header">Scenario</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li id="health" class="nav-dropdown">
+                    <a href="#" title="Health">Health</a>
+                    <ul class="nav-sub">
+                        <li><a href="main?scenario=Health" title="Main">Main</a>
+                        </li>
+                        <li><a href="page?scenario=Health&city=Melbourne" title="Melbourne">Melbourne</a>
+                        </li>
+                        <li><a href="page?scenario=Health&city=Sydney" title="Sydney">Sydney</a>
+                        </li>
+                        <li><a href="page?scenario=Health&city=Brisbane" title="Brisbane">Brisbane</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="house" class="nav-dropdown">
+                    <a href="#" title="House">House</a>
+                    <ul class="nav-sub">
+                        <li><a href="main?scenario=House" title="Main">Main</a>
+                        </li>
+                        <li><a href="page?scenario=House&city=Melbourne" title="Melbourne">Melbourne</a>
+                        </li>
+                        <li><a href="page?scenario=House&city=Sydney" title="Sydney">Sydney</a>
+                        </li>
+                        <li><a href="page?scenario=House&city=Brisbane" title="Brisbane">Brisbane</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="environment" class="nav-dropdown">
+                    <a href="#" title="Environment">Environment</a>
+                    <ul class="nav-sub">
+                        <li><a href="main?scenario=Environment" title="Main">Main</a>
+                        </li>
+                        <li><a href="page?scenario=Environment&city=Melbourne" title="Melbourne">Melbourne</a>
+                        </li>
+                        <li><a href="page?scenario=Environment&city=Sydney" title="Sydney">Sydney</a>
+                        </li>
+                        <li><a href="page?scenario=Environment&city=Brisbane" title="Brisbane">Brisbane</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!--sidebar left end-->
+    <!--main content start-->
+    <section class="main-content-wrapper">
+        <div class="pageheader">
+            <h1 id="h1"></h1>
+            <p id="p" class="description"></p>
+            <div class="breadcrumb-wrapper hidden-xs">
+                <span class="label">You are here:</span>
+                <ol class="breadcrumb">
+                    <li id="li" class="active"></li>
+                </ol>
+            </div>
+        </div>
+        <div id="container" style="width:1000px">
+            <div id ='chart1' style="height:300px;width:500px;float:left;">
+            </div>
+            <div id ='chart2' style="height:300px;width:500px;float:left;">
+            </div>
+            <div id ='chart3' style="height:300px;width:500px;float:left;">
+            </div>
+            <div id ='chart4' style="height:300px;width:500px;float:left;">
+
+            </div>
+
+        </div>
+
+    </section>
+</section>
+<script>
+    function updateCal() {
+        alert(1)
+        lineChart.dispose();
+        time=document.getElementById("time").value.split("/");
+        keyword='{{ keyword }}';
+        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword=keyword",new Date(time[2],time[1],time[0]));//日期来自页面DOM
+    }
+    function submit() {
+        lineChart.dispose();
+        barChart.dispose();
+        pieChart.dispose();
+        cloud.dispose();
+        time=document.getElementById("time").value.split("/");
+        keyword='{{ keyword }}';
+        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword=keyword",new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        createPieChart("chart2","/main/pie?keyword=keyword");
+        createBarChart("chart3","/main/bar?keyword=keyword");
+        createCloud("chart4", "/main/cloud?keyword=keyword");
+    }
+
+    // initiate page
+
+    scenario='{{ scenario }}';
+    time=keyword=document.getElementById("time").value.split("/");
+    keyword=document.getElementById("keyword").value;
+    document.getElementById("time").addEventListener("change", updateCal);
+    document.getElementById(scenario.toLowerCase()).classList.add('active');
+    document.getElementById("h1").innerHTML=scenario+' Scenario';
+    document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
+    document.getElementById("li").innerHTML=scenario+' Scenario of Main Page';
+    createLineChart("chart1","/main/line?date="+new Date(),new Date());//日期来自页面DOM
+    createPieChart("chart2","/main/pie");
+    createBarChart("chart3","/main/bar");
+    createCloud("chart4", "/main/cloud");
+</script>
+</body>
+
+</html>
