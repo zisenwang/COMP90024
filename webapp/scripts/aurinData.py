@@ -2,7 +2,7 @@ import json
 #
 # output:  area_name:{age_group:{gender,aided,unaided}...}...
 def aurinDisabledData():
-    f = open('./inner.json',encoding='utf8')
+    f = open('inner.json', encoding='utf8')
     j = json.load(f)
     collection = {}
     for i in range(len(j['features'])):

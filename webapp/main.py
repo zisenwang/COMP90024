@@ -1,10 +1,12 @@
 from flask import render_template, request
 from flask import Flask
 from couchdb import Server
+from webapp.scripts import emotion, word_cloud
 
 app = Flask(__name__)
 app.debug = True
-
+cache = {}
+scenario = ''
 
 @app.route('/data', methods=['GET'])
 def register():
@@ -24,6 +26,7 @@ def index():
 
 @app.route('/main')
 def main():
+    global scenario
     scenario = request.args.get('scenario')
     keyword = request.args.get('keyword')
     return render_template('main.html', scenario=scenario, keyword=keyword)
@@ -130,7 +133,9 @@ def main_line():
 
 @app.route('/main/bar')
 def main_bar():
-    json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
+    # json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
+    # {city: ["melbourne", "sydney", "brisbane"], value1: [6414, 5711, 3343], value2: [10035, 9137, 5673]}
+    json = emotion.emotion_total(['melbourne', 'sydney', 'brisbane'], '')
     return json
 
 
@@ -157,8 +162,14 @@ def main_pie():
 
 @app.route('/main/cloud')
 def main_cloud():
-    json = {'rows': [{'name': 'Sam S Club', 'value': 1000}, {'name': 'hospital', 'value': 1300}]}
-    return json
+    global cache
+    if not cache:
+        json = {'rows': []}
+        temp = word_cloud.word_cloud_total(['melbourne', 'sydney', 'brisbane'], ['health', 'hospital', 'covid'])
+        for k, v in temp.items():
+            json['rows'].append({'name': k, 'value': v})
+        cache = json
+    return cache
 
 
 @app.route('/page/bar')

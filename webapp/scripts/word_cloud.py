@@ -2,8 +2,8 @@
 # input: view name
 # output: json
 import requests
-from test_all.couchDbHandler import CouchDB
-from test_all.search_content import search_content
+from webapp.scripts.couchDbHandler import CouchDB
+from webapp.scripts.search_content import search_content
 
 stopwords_list = requests.get(
     "https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw"
