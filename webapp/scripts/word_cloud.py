@@ -2,7 +2,8 @@
 # input: view name
 # output: json
 import requests
-from couchDbHandler import CouchDB
+from test_all.couchDbHandler import CouchDB
+from test_all.search_content import search_content
 
 stopwords_list = requests.get(
     "https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw"
@@ -14,12 +15,12 @@ def word_cloud(db_name, keyword):
     a = CouchDB()
     if keyword == '':
         keyword = "dontrepeatplz"
-        if not CouchDB.check_design(a, db_name, keyword):
-            CouchDB.create_dynamic_view(a, db_name, keyword, keyword, '', True)
+        if not CouchDB.check_view(a, db_name, keyword, "word_cloud"):
+            CouchDB.create_dynamic_view(a, db_name, keyword, "word_cloud", '', search_content('word_cloud'))
     else:
-        if not CouchDB.check_design(a, db_name, keyword):
-            CouchDB.create_dynamic_view(a, db_name, keyword, keyword, keyword, True, '_sum')
-    db = CouchDB.view_db(CouchDB(), db_name, f"{keyword}/{keyword}")
+        if not CouchDB.check_view(a, db_name, keyword, "word_cloud"):
+            CouchDB.create_dynamic_view(a, db_name, keyword, "word_cloud", keyword, search_content('word_cloud'))
+    db = CouchDB.view_db(a, db_name, f"{keyword}/word_cloud")
     res = {}
     for item in list(db):
         dic = dict(item)

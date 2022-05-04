@@ -62,36 +62,47 @@ class CouchDB(object):
         view = db.view(view_name, group=True)
         return view
 
+    def check_view(self, db_name, keyword, view_name):
+        db = CouchDB.get_db(self, db_name)
+        if f"_design/{keyword}" in db:
+            return view_name in db[f"_design/{keyword}"]['views']
+        return False
+
     def check_design(self, db_name, keyword):
         db = CouchDB.get_db(self, db_name)
         return f"_design/{keyword}" in db
 
-    def create_dynamic_view(self, db_name, design_doc, view_name, keyword, word_cloud=False, reduce='_sum'):
+    def create_dynamic_view(self, db_name, design_doc, view_name, keyword, search_content, reduce='_sum'):
         db = CouchDB.get_db(self, db_name)
 
         # if such design existed, delete it
         if CouchDB.check_design(CouchDB(), db_name, design_doc):
-            db.delete(db[f"_design/{design_doc!r}"])
+            db.delete(db[f"_design/{design_doc}"])
 
         # single input string
         if type(keyword) is str:
-            map_string = "function (doc) { " + f"if (doc.text && doc.text.indexOf('{keyword}') !== -1 "
+            map_string = "function (doc) { " + f"if (doc.text && doc.text.indexOf('{keyword}') !== -1 ) "
 
         # multiple input string in list form
         elif type(keyword) is list:
-            map_string = "function (doc) { if (doc.text"
+            map_string = "function (doc) { if (doc.text && ( 1 != 1 "
             for key in keyword:
-                map_string += f" && doc.text.indexOf('{key}') !== -1"
+                map_string += f"|| doc.text.indexOf('{key}') !== -1 "
+            map_string += ")) "
         else:
             print("The keyword is invalid!")
             return 0
 
-        # for word cloud search
-        if word_cloud is True:
-            map_string += ") { doc.text.toLowerCase().split(' ').forEach(function (word) { if (word != '' && /[" \
-                      "a-zA-Z]+/.test(word)){ res = word.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/gm,''); emit(res,1);}}); } "
-        else:
-            map_string += f") emit({keyword!r},1);"
+        # # for word cloud search
+        # if word_cloud is True:
+        #     map_string += ")) { doc.text.toLowerCase().split(' ').forEach(function (word) { if (word != '' && /[" \
+        #               "a-zA-Z]+/.test(word)){ res = word.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/gm,''); emit(res,1);}}); } "
+        # else:
+        #     map_string += f") emit({keyword!r},1);"
+        map_string += search_content
+
+
+
         map_string += "} "
 
         data = {
@@ -113,5 +124,7 @@ if __name__ == '__main__':
     start = time.time()
     a = CouchDB()
 
-    b = CouchDB.check_design(a, 'old_tweets_labels', 'test_design')
+    b = CouchDB.check_view(a, 'old_tweets_labels', 'test_design', 'te')
     print(b)
+    end = time.time()
+    print(end-start)
