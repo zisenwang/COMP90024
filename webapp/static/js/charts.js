@@ -10,7 +10,23 @@ var lineChart;
 var barChart;
 var pieChart;
 var cloud;
+var map;
 
+function axisFormatter(arr) {
+        var data=[];
+        for(var i=0;i<arr.length;i++) {
+            if(i%2===0) {
+                data[i]={
+                        value: arr[i],
+                        symbol: 'diamond',
+                        symbolSize: 16
+                }
+            } else {
+                data[i]=arr[i];
+            }
+        }
+        return data;
+}
 //lineChart
 function createLineChart(id, url,date) {
 $.ajax({
@@ -39,13 +55,11 @@ $.ajax({
         var temp;
         var day;
         var d=date;
-        console.log(date)
         var values=Object.values(obj);
         var res={};
         labels[k]=values[0][k].city;
         for (var n = 0; n < 5; n++) {
             day = d.getMonth() + '-' + d.getDate();
-            console.log(day)
             dates[n]=day;
             d = getNextDay(d);
             temp = values[n][k];
@@ -59,27 +73,13 @@ $.ajax({
         }
         return res;
     }
-    function axisFormatter() {
-        var data=[];
-        for(var i=0;i<dates.length;i++) {
-            if(i%2===0) {
-                data[i]={
-                        value: dates[i],
-                        symbol: 'diamond',
-                        symbolSize: 16
-                }
-            } else {
-                data[i]=dates[i];
-            }
-        }
-        return data;
-    }
 
     function optionFormatter() {
         var options=[];
         for(var i=0;i<dates.length;i++) {
             var obj={};
-            obj.title={'text':'Heat-'+dates[i]};
+
+            obj.title={'text':'Heat During the Day','subtext': 'date ('+(date.getYear()+1900) + '-'+dates[i]+')',left: 'center'};
             obj.series=[{ 'data': dataMap.city1[dates[i]] },
                     { 'data': dataMap.city2[dates[i]] },
                     { 'data': dataMap.city3[dates[i]] }];
@@ -103,16 +103,14 @@ $.ajax({
                 // controlStyle: {
                 //     position: 'left'
                 // },
-                data: axisFormatter(),
+                data: axisFormatter(dates),
                 label: { interval: 1 },
-            },
-            title: {
-                subtext: 'XXXX'
             },
             tooltip: {},
             legend: {
                 left: 'right',
                 data: labels,
+                orient: 'vertical'
             },
             calculable: true,
             grid: {
@@ -250,8 +248,13 @@ function createPieChart(id, url) {
         },
         legend: {
             orient: 'vertical',
-            left: 'left'
+            right: 'right',
+            formatter:function(name){
+                li=name.split(' ');
+			    return li[0];
+            }
         },
+
         series: [
             {
                 name: 'Access From',
@@ -287,10 +290,6 @@ function createPieChart(id, url) {
         });
 
         option = {
-            title: {
-                text: 'Word Cloud',
-                left: 'center'
-            },
             tooltip: {},
             series: [ {
                 type: 'wordCloud',
@@ -349,6 +348,10 @@ function createPageBarChart(id, url) {
         }
     }
     option = {
+        title: {
+                text: 'Frequency of Words',
+                left: 'center'
+            },
         tooltip:{},
         legend: {
             data: ['wordcount'],
@@ -368,11 +371,163 @@ function createPageBarChart(id, url) {
                 data: yList,
                 // stack: 'one',
                 type: 'bar',
-                color: '#f7a35c'
+                color:'#00ADB5'
             },
 
         ]
     };
     barChart = echarts.init(document.getElementById(id));
     option && barChart.setOption(option);
+}
+function createMap(id) {
+
+    $.get('http://localhost:8888/static/images/mel_map.svg', function (svg) {
+        echarts.registerMap('mel_map', { svg: svg });
+        option = {
+           timeline: {
+                axisType: 'category',
+                // realtime: false,
+                // loop: false,
+                autoPlay: true,
+                // currentIndex: 2,
+                playInterval: 1000,
+                // controlStyle: {
+                //     position: 'left'
+                // },
+                data: axisFormatter(['1','2','3','4','5']),
+                label: { interval: 1 },
+           },
+            tooltip: {},
+            geo: {
+                tooltip: {
+                    show: true
+                },
+                map: 'mel_map',
+                roam: true
+            },
+            series: {
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                geoIndex: 0,
+                symbolSize: function (params) {
+                    return (params[2] / 100) * 15 + 5;
+                },
+                itemStyle: {
+                    color: '#b02a02'
+                },
+                encode: {
+                    tooltip: 2
+                },
+                data: [
+                    [488, 459, 100],
+                    [600, 600, 30],
+                    [500, 500, 40],
+                    [770.3415644319939, 757.9672194986475, 30],
+                    [1180.0329284196291, 743.6141808346214, 80],
+                    [894.03790632245, 1188.1985153835008, 61],
+                    [1372.98925630313, 477.3839988649537, 70],
+                    [1378.62251255796, 935.6708486282843, 81]
+                ]
+            }
+        };
+        map = echarts.init(document.getElementById(id));
+        map.setOption(option);
+        map.getZr().on('click', function (params) {
+            var pixelPoint = [params.offsetX, params.offsetY];
+            var dataPoint = map.convertFromPixel({ geoIndex: 0 }, pixelPoint);
+        });
+    });
+}
+
+//suburb pie chart
+function createSuburbPieChart(id, url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: false,
+        cache: false,
+        success: function (res) {
+            sections = res.rows;
+        }
+    });
+    option = {
+        title: {
+            text: 'Heat Over Suburb',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        series: [{
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: true,
+            itemStyle: {
+                borderRadius: 5,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+
+            data: sections
+        }]
+    };
+    pieChart = echarts.init(document.getElementById(id));
+    option && pieChart.setOption(option);
+}
+
+//page sunburst
+function createSunburst(id, url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: false,
+        cache: false,
+        success: function (res) {
+            sections = res.rows;
+        }
+    });
+    option = {
+        title: {
+            text: 'Emotion',
+            left: 'left'
+        },
+        tooltip: {
+
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        visualMap: {
+            type: 'continuous',
+            min: 0,
+            max: 100,
+            inRange: {
+              color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+            }
+          },
+        series: {
+            type: 'sunburst',
+            data: sections,
+            radius: ['15%', '90%'],
+            label: {
+                rotate: 'radial',
+                color:'rgba(248, 246, 246, 1)'
+            },
+             itemStyle: {
+                borderWidth: 2
+            },
+        }
+    };
+    sunburstChart = echarts.init(document.getElementById(id));
+    option && sunburstChart.setOption(option);
 }
