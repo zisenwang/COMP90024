@@ -33,7 +33,6 @@ function createLineChart(id, url) {
                 'type': 'line'
             });
     }
-    console.log(labels);
     option = {
         legend:{
         data: labels,

@@ -86,13 +86,16 @@
                         </li>
                     </ul>
                 </li>
+                <li id = "suburb" class="nav-dropdown">
+                    <a href="suburb?scenario=Suburb">Suburb</a>
+                </li>
             </ul>
         </nav>
     </aside>
     <!--sidebar left end-->
     <!--main content start-->
     <section class="main-content-wrapper">
-        <div class="pageheader">
+        <div class="pageheader" >
             <h1 id="h1"></h1>
             <p id="p" class="description"></p>
             <div class="breadcrumb-wrapper hidden-xs">
@@ -102,62 +105,58 @@
                 </ol>
             </div>
         </div>
-        <div id="container" style="width:1000px">
-            <div id ='chart1' style="height:300px;width:500px;float:left;">
+        <div id="container" style="width:1100px">
+            <div id ='chart1' style="height:250px;width:1100px;float:left;">
             </div>
-            <div id ='chart2' style="height:300px;width:500px;float:left;">
+            <div id ='blank1' style="height:50px;width:1000px;float:left;">
             </div>
-            <div id ='chart3' style="height:300px;width:500px;float:left;">
+            <div id ='chart2' style="height:250px;width:400px;float:left;">
             </div>
-            <div id ='chart4' style="height:300px;width:500px;float:left;">
-
+            <div id ='chart3' style="height:250px;width:300px;float:left;">
             </div>
-
+            <div id ='chart4' style="height:250px;width:400px;float:left;">
+            </div>
         </div>
 
     </section>
 </section>
 <script>
-    function updateCal() {
-        alert(1)
-        lineChart.dispose();
-        time=document.getElementById("time").value.split("/");
-        keyword='{{ keyword }}';
-        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword=keyword",new Date(time[2],time[1],time[0]));//日期来自页面DOM
-    }
+    var keyword;
     function submit() {
-        lineChart.dispose();
+    if(keyword!==document.getElementById("keyword").value) {
+        keyword=document.getElementById("keyword").value
         barChart.dispose();
         pieChart.dispose();
         cloud.dispose();
-        time=document.getElementById("time").value.split("/");
-        keyword=document.getElementById("keyword").value;
-        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
         createPieChart("chart2","/main/pie?keyword="+keyword);
-        createBarChart("chart3","/main/bar?keyword="+keyword);
-        createCloud("chart4", "/main/cloud?keyword="+keyword);
+        createCloud("chart3", "/main/cloud?keyword="+keyword);
+        createBarChart("chart4","/main/bar?keyword="+keyword);
+
+    }
+        lineChart.dispose();
+        time=document.getElementById("time").value.split("/");
+        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
     }
 
     // initiate page
-
     scenario='{{ scenario }}';
     var time=[];
     if(document.getElementById("time").value==="") {
         var cur=new Date();
-        time=[cur.getDate(),cur.getMonth()+1,cur.getYear()]
+        time=[cur.getDate(),cur.getMonth()+1,cur.getYear()+1900]
     } else {
         time=document.getElementById("time").value.split("/");
     }
     var keyword=document.getElementById("keyword").value;
-    console.log(time)
     document.getElementById(scenario.toLowerCase()).classList.add('active');
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
     document.getElementById("li").innerHTML=scenario+' Scenario of Main Page';
     createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0]),new Date(time[2],time[1],time[0]));
     createPieChart("chart2","/main/pie");
-    createBarChart("chart3","/main/bar");
-    createCloud("chart4", "/main/cloud");
+    createCloud("chart3", "/main/cloud");
+    createBarChart("chart4","/main/bar");
+
 </script>
 </body>
 
