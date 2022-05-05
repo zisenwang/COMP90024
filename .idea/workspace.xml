@@ -2,34 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3g3D_u50.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gTD_u50.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gbD_u50.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gfD_u50.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/test_all.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/areaLabel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/aurinData.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/emotion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/inner.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/search_content.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/static/images/mel_map.svg" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/images/mel_map.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/static/js/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/charts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/static/js/charts_back.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/charts_back.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/static/js/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/echarts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/page.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/suburb.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/suburb.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +44,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -155,7 +155,8 @@
       <updated>1650083733717</updated>
       <workItem from="1650083734917" duration="156000" />
       <workItem from="1651587171563" duration="19313000" />
-      <workItem from="1651764644934" duration="239000" />
+      <workItem from="1651764644934" duration="631000" />
+      <workItem from="1651765383395" duration="539000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1651764706218</created>
@@ -171,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651764849752</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changes">
+      <created>1651764890763</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651764890763</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes">
+      <created>1651765064398</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1651765064398</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
