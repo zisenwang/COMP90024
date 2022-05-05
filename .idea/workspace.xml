@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/map.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/reduce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
