@@ -89,6 +89,9 @@
                 <li id = "suburb" class="nav-dropdown">
                     <a href="suburb?scenario=Suburb">Suburb</a>
                 </li>
+                <li id = "customized" class="nav-dropdown">
+                    <a href="customized?scenario=Customized">Customized</a>
+                </li>
             </ul>
         </nav>
     </aside>
@@ -121,21 +124,17 @@
     </section>
 </section>
 <script>
-    var keyword;
     function submit() {
-    if(keyword!==document.getElementById("keyword").value) {
-        keyword=document.getElementById("keyword").value
         barChart.dispose();
         pieChart.dispose();
         cloud.dispose();
-        createPieChart("chart2","/main/pie?keyword="+keyword);
-        createCloud("chart3", "/main/cloud?keyword="+keyword);
-        createBarChart("chart4","/main/bar?keyword="+keyword);
+        createPieChart("chart2","/main/pie");
+        createCloud("chart3", "/main/cloud");
+        createBarChart("chart4","/main/bar");
 
-    }
         lineChart.dispose();
         time=document.getElementById("time").value.split("/");
-        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0])+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        createLineChart("chart1","/main/line?date="+new Date(time[2],time[1],time[0]),new Date(time[2],time[1],time[0]));//日期来自页面DOM
     }
 
     // initiate page
@@ -147,7 +146,6 @@
     } else {
         time=document.getElementById("time").value.split("/");
     }
-    var keyword=document.getElementById("keyword").value;
     document.getElementById(scenario.toLowerCase()).classList.add('active');
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';

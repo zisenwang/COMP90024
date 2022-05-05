@@ -440,7 +440,7 @@ $.ajax({
         return options;
     }
     dataFormatter();
-    $.get('http://localhost:8888/static/images/mel_map.svg', function (svg) {
+    $.get('../static/images/mel_map.svg', function (svg) {
         echarts.registerMap('mel_map', { svg: svg });
         option = {
         baseOption: {
