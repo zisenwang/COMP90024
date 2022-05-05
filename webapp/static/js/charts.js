@@ -11,6 +11,41 @@ var barChart;
 var pieChart;
 var cloud;
 var map;
+var dates=[];
+
+var dict=[
+    [200, 520],
+    [200, 300],
+    [350, 200],
+    [570, 170],
+    [725, 250],
+    [1040, 350],
+    [1000, 700],
+    [570, 1000],
+    [780, 750],
+    [660, 780],
+    [680, 650],
+    [600, 620],
+    [530, 580],
+    [550, 530],
+    [640, 530],
+    [740, 520],
+    [740, 430],
+    [650, 460],
+    [570, 450],
+    [550, 490],
+    [490, 480],
+    [480, 440],
+    [510, 430],
+    [370, 480],
+    [410, 420],
+    [350, 380],
+    [430, 370],
+    [480, 360],
+    [520, 360],
+    [580, 360],
+    [680, 390]
+]
 
 function axisFormatter(arr) {
         var data=[];
@@ -43,29 +78,20 @@ $.ajax({
 
     var labels=[];
     var dataMap = {};
-    var dates=[];
 
-    function getNextDay(d){
-        d = new Date(d);
-        d = +d + (1000*60*60*24);
-        return new Date(d);
-    }
     function dataFormatter(obj,k) {
         var tList = ["0", "2", "4", "6","8","10","12","14","16","18","20","22"];
         var temp;
         var day;
-        var d=date;
         var values=Object.values(obj);
         var res={};
         labels[k]=values[0][k].city;
         for (var n = 0; n < 5; n++) {
-            day = d.getMonth() + '-' + d.getDate();
-            dates[n]=day;
-            d = getNextDay(d);
+            dates[n]=Object.keys(obj)[n];
             temp = values[n][k];
             for (var i = 0;i < tList.length; i++) {
-            if(res[day]===undefined) res[day]=[];
-                res[day][i] = {
+            if(res[dates[n]]===undefined) res[dates[n]]=[];
+                res[dates[n]][i] = {
                     name: tList[i],
                     value: temp.num[i]
                 };
@@ -73,7 +99,6 @@ $.ajax({
         }
         return res;
     }
-
     function optionFormatter() {
         var options=[];
         for(var i=0;i<dates.length;i++) {
@@ -90,19 +115,13 @@ $.ajax({
     dataMap.city1 = dataFormatter(lineRes,0);
     dataMap.city2 = dataFormatter(lineRes,1);
     dataMap.city3 = dataFormatter(lineRes,2);
-
     option = {
         baseOption: {
             timeline: {
                 axisType: 'category',
-                // realtime: false,
-                // loop: false,
                 autoPlay: true,
                 // currentIndex: 2,
                 playInterval: 1000,
-                // controlStyle: {
-                //     position: 'left'
-                // },
                 data: axisFormatter(dates),
                 label: { interval: 1 },
             },
@@ -379,22 +398,57 @@ function createPageBarChart(id, url) {
     barChart = echarts.init(document.getElementById(id));
     option && barChart.setOption(option);
 }
-function createMap(id) {
 
+function createMap(id,url,date) {
+$.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: false,
+        cache: false,
+        success: function (res) {
+            mapRes=res;
+            console.log(mapRes)
+        }
+    });
+    function dataFormatter() {
+    for (var n = 0; n < 5; n++) {
+            dates[n]=Object.keys(mapRes)[n];
+    }
+    console.log(dates)
+    dataMap={}
+        for(var i=0;i<dates.length;i++) {
+        dataMap[dates[i]]=[];
+            for(var j=0;j<dict.length;j++) {
+                dataMap[dates[i]][j]=[];
+                dataMap[dates[i]][j][0]=dict[j][0];
+                dataMap[dates[i]][j][1]=dict[j][1];
+                dataMap[dates[i]][j][2]=mapRes[dates[i]][j];
+            }
+        }
+    }
+    function optionFormatter() {
+        var options=[];
+        for(var i=0;i<dates.length;i++) {
+            var obj={};
+            obj.title={'text':'Heat Over the Suburbs','subtext': 'date ('+(date.getYear()+1900) + '-'+dates[i]+')',left: 'center'};
+            obj.series=[{ 'data': dataMap[dates[i]]}];
+            options[i]=obj;
+        }
+        console.log(options)
+        return options;
+    }
+    dataFormatter();
     $.get('http://localhost:8888/static/images/mel_map.svg', function (svg) {
         echarts.registerMap('mel_map', { svg: svg });
         option = {
+        baseOption: {
            timeline: {
                 axisType: 'category',
-                // realtime: false,
-                // loop: false,
                 autoPlay: true,
-                // currentIndex: 2,
                 playInterval: 1000,
-                // controlStyle: {
-                //     position: 'left'
-                // },
-                data: axisFormatter(['1','2','3','4','5']),
+                data: axisFormatter(dates),
                 label: { interval: 1 },
            },
             tooltip: {},
@@ -413,22 +467,14 @@ function createMap(id) {
                     return (params[2] / 100) * 15 + 5;
                 },
                 itemStyle: {
-                    color: '#b02a02'
+                    color: '#9e7cd7'
                 },
                 encode: {
                     tooltip: 2
-                },
-                data: [
-                    [488, 459, 100],
-                    [600, 600, 30],
-                    [500, 500, 40],
-                    [770.3415644319939, 757.9672194986475, 30],
-                    [1180.0329284196291, 743.6141808346214, 80],
-                    [894.03790632245, 1188.1985153835008, 61],
-                    [1372.98925630313, 477.3839988649537, 70],
-                    [1378.62251255796, 935.6708486282843, 81]
-                ]
+                }
             }
+            },
+            options: optionFormatter()
         };
         map = echarts.init(document.getElementById(id));
         map.setOption(option);
