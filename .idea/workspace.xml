@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/test_all.iml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/test_all.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/areaLabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/areaLabel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/aurinData.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/aurinData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/couchDbHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/desktop.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/inner.json" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/inner.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
+    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3g3D_u50.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gTD_u50.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gbD_u50.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gfD_u50.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/Simple-Line-Icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webapp/static/font/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -44,6 +62,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="27rggAsWBjsrVTvoW6zMrmssqK5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,6 +83,18 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\IdeaProjects\COMP90024\webapp" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="couchDbHandler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -109,7 +142,10 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="" />
@@ -119,21 +155,73 @@
       <updated>1650083733717</updated>
       <workItem from="1650083734917" duration="156000" />
       <workItem from="1651587171563" duration="19313000" />
+      <workItem from="1651764644934" duration="239000" />
     </task>
+    <task id="LOCAL-00001" summary="Changes">
+      <created>1651764706218</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651764706218</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changes">
+      <created>1651764849752</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651764849752</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:E:/ideaPro/COMP90024/webapp" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
 </project>
