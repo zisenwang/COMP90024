@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/.idea/test_all.iml" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/.idea/test_all.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/areaLabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/areaLabel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/aurinData.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/aurinData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/couchDbHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/desktop.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/inner.json" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/inner.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_all/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +39,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -63,7 +47,7 @@
       <recent name="D:\IdeaProjects\COMP90024\webapp" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="couchDbHandler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="COMP90024" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,6 +62,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_all/couchDbHandler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="COMP90024" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\anaconda\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/webapp/MapReduce" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/webapp/MapReduce/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,6 +114,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.couchDbHandler" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -135,5 +147,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP90024$couchDbHandler.coverage" NAME="couchDbHandler Coverage Results" MODIFIED="1651652703731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_all" />
+    <SUITE FILE_PATH="coverage/COMP90024$main.coverage" NAME="main Coverage Results" MODIFIED="1651656078065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapp" />
   </component>
 </project>

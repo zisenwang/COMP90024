@@ -2,12 +2,22 @@ from flask import render_template, request
 from flask import Flask
 from couchdb import Server
 from flask_cors import CORS
+from webapp.scripts import emotion, word_cloud
 
 PORT=8888
 app = Flask(__name__)
 CORS(app, resources={r"/.*": {"origins": "http://localhost:"+str(PORT)}})
 app.debug = True
 
+# global variables
+CACHE = {"word_cloud": {},
+         "emotion": {},
+         "polarity": {}}
+SCENARIO = ''
+KEYWORD = ''
+SCENARIO_KEYWORD = {"health": ["covid", "lockdown", "virus", "vaccine",  ],
+                    "housing": ["house", "housing", "rent" ],
+                    "environment": ["dog", "cat", "pet", "environment", "air quality" ]}
 
 @app.route('/data', methods=['GET'])
 def register():
@@ -27,9 +37,11 @@ def index():
 
 @app.route('/main')
 def main():
-    scenario = request.args.get('scenario')
-    keyword = request.args.get('keyword')
-    return render_template('main.html', scenario=scenario, keyword=keyword)
+    global SCENARIO
+    global KEYWORD
+    SCENARIO = request.args.get('scenario')
+    KEYWORD = request.args.get('keyword')
+    return render_template('main.html', scenario=SCENARIO, keyword=KEYWORD)
 
 
 @app.route('/page')
@@ -53,7 +65,7 @@ def main_line():
     # 调用
 
     json = {
-        "4-30": [{
+        "4-31": [{
             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
             "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
             "city": "Melbourne"
@@ -71,7 +83,7 @@ def main_line():
         ],
         "5-1": [{
             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
             "city": "Melbourne"
         },
             {
@@ -87,7 +99,7 @@ def main_line():
         ],
         "5-2": [{
             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
             "city": "Melbourne"
         },
             {
@@ -103,7 +115,7 @@ def main_line():
         ],
         "5-3": [{
             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
             "city": "Melbourne"
         },
             {
@@ -113,13 +125,13 @@ def main_line():
             },
             {
                 "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+                "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
                 "city": "Brisbane"
             }
         ],
         "5-4": [{
             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
             "city": "Melbourne"
         },
             {
@@ -139,7 +151,9 @@ def main_line():
 
 @app.route('/main/bar')
 def main_bar():
-    json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
+    # json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
+    # {city: ["melbourne", "sydney", "brisbane"], value1: [6414, 5711, 3343], value2: [10035, 9137, 5673]}
+    json = emotion.emotion_total(['melbourne', 'sydney', 'brisbane'], '')
     return json
 
 
@@ -166,8 +180,23 @@ def main_pie():
 
 @app.route('/main/cloud')
 def main_cloud():
-    json = {'rows': [{'name': 'Sam S Club', 'value': 1000}, {'name': 'hospital', 'value': 1300}]}
-    return json
+    global CACHE
+    global SCENARIO_KEYWORD
+    global SCENARIO
+    global KEYWORD
+    if SCENARIO in SCENARIO_KEYWORD:
+        key = SCENARIO_KEYWORD[SCENARIO]
+    else:
+        key = KEYWORD
+    if str(key) not in CACHE['word_cloud']:
+        json = {'rows': []}
+        temp = word_cloud.word_cloud_total(['melbourne', 'sydney', 'brisbane'], key)
+        for k, v in temp.items():
+            json['rows'].append({'name': k, 'value': v})
+        CACHE['word_cloud'][str(key)] = json
+
+    print(CACHE)
+    return CACHE['word_cloud'][str(key)]
 
 
 @app.route('/page/bar')
@@ -224,11 +253,12 @@ def page_sunburst():
     return json
 
 
-@app.route('/suburb/map')
-def suburb_map():
+@app.route('/suburb/line')
+def suburb_line():
     # 页面DOM获取日期，调用后台接口，获取数据
     date = request.args.get('date')
     # 调用
+
     json = {
         "4-30": [13,42,14,22,56,33,33,42,14,22,56,33,33,13,42,14,22,56,33,33,42,14,22,56,33,33,14,22,56,33,33],
         "5-1": [23,45,24,56,54,34,22,42,14,22,56,33,33,13,42,14,22,56,33,33,42,14,22,56,33,33,14,22,56,33,33],
