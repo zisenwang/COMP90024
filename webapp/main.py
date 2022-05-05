@@ -4,12 +4,20 @@ from couchdb import Server
 from flask_cors import CORS
 from webapp.scripts import emotion, word_cloud
 
-PORT=8888
+PORT = 8888
 app = Flask(__name__)
 CORS(app, resources={r"/.*": {"origins": "http://localhost:"+str(PORT)}})
 app.debug = True
-cache = {}
-scenario = ''
+
+# global variables
+CACHE = {"word_cloud": {},
+         "emotion": {},
+         "polarity": {}}
+SCENARIO = ''
+KEYWORD = ''
+SCENARIO_KEYWORD = {"health": ["covid", "lockdown", "virus", "vaccine",  ],
+                    "housing": ["house", "housing", "rent" ],
+                    "environment": ["dog", "cat", "pet", "environment", "air quality" ]}
 
 @app.route('/data', methods=['GET'])
 def register():
@@ -29,10 +37,11 @@ def index():
 
 @app.route('/main')
 def main():
-    global scenario
-    scenario = request.args.get('scenario')
-    keyword = request.args.get('keyword')
-    return render_template('main.html', scenario=scenario, keyword=keyword)
+    global SCENARIO
+    global KEYWORD
+    SCENARIO = request.args.get('scenario')
+    KEYWORD = request.args.get('keyword')
+    return render_template('main.html', scenario=SCENARIO, keyword=KEYWORD)
 
 
 @app.route('/page')
@@ -171,14 +180,23 @@ def main_pie():
 
 @app.route('/main/cloud')
 def main_cloud():
-    global cache
-    if not cache:
+    global CACHE
+    global SCENARIO_KEYWORD
+    global SCENARIO
+    global KEYWORD
+    if SCENARIO in SCENARIO_KEYWORD:
+        key = SCENARIO_KEYWORD[SCENARIO]
+    else:
+        key = KEYWORD
+    if str(key) not in CACHE['word_cloud']:
         json = {'rows': []}
-        temp = word_cloud.word_cloud_total(['melbourne', 'sydney', 'brisbane'], ['health', 'hospital', 'covid'])
+        temp = word_cloud.word_cloud_total(['melbourne', 'sydney', 'brisbane'], key)
         for k, v in temp.items():
             json['rows'].append({'name': k, 'value': v})
-        cache = json
-    return cache
+        CACHE['word_cloud'][str(key)] = json
+
+    print(CACHE)
+    return CACHE['word_cloud'][str(key)]
 
 
 @app.route('/page/bar')
