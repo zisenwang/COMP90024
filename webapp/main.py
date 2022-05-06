@@ -1,14 +1,17 @@
 from flask import render_template, request
 from flask import Flask
 from couchdb import Server
-from webapp.scripts import emotion, word_cloud
+from webapp.scripts import emotion, word_cloud, couchDbHandler, tweets_amount
+from datetime import datetime, timedelta
 
 PORT=8888
 app = Flask(__name__)
 #CORS(app, resources={r"/.*": {"origins": "http://localhost:"+str(PORT)}})
 app.debug = True
 cache = {}
-scenario = ''
+CITY_LIST = ['melbourne', 'sydney', 'brisbane']
+COUCH_DB = couchDbHandler.CouchDB(couchDbHandler.DB_INFO)
+SCENARIO = ''
 
 @app.route('/data', methods=['GET'])
 def register():
@@ -28,9 +31,11 @@ def index():
 
 @app.route('/main')
 def main():
-    scenario = request.args.get('scenario')
+    global SCENARIO
+    SCENARIO = request.args.get('scenario')
     keyword = request.args.get('keyword')
-    return render_template('main.html', scenario=scenario, keyword=keyword)
+    print(SCENARIO)
+    return render_template('main.html', scenario=SCENARIO, keyword=keyword)
 
 
 @app.route('/page')
@@ -56,126 +61,200 @@ def search_engine():
 
 @app.route('/main/line')
 def main_line():
-    # 页面DOM获取日期，调用后台接口，获取数据
+    """
+    This function should get the queried date and scenario and get data from databases of three cities
+    :return: json containing the amount of related tweets in each period
+    """
+    # get date and scenario name from frontend dom object
     date = request.args.get('date')
-    # 调用
+    if not date:
+        date = "4-30"
+    date = datetime.strptime(date, '%m-%d')
+    global SCENARIO
+    scenario = SCENARIO.lower()
+    scenario += '_scenario'
 
-    json = {
-        "4-30": [{
-            "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
-            "city": "Melbourne"
-        },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Sydney"
-            },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
-                "city": "Brisbane"
-            }
-        ],
-        "5-1": [{
-            "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-            "city": "Melbourne"
-        },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Sydney"
-            },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
-                "city": "Brisbane"
-            }
-        ],
-        "5-2": [{
-            "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
-            "city": "Melbourne"
-        },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Sydney"
-            },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
-                "city": "Brisbane"
-            }
-        ],
-        "5-3": [{
-            "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
-            "city": "Melbourne"
-        },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Sydney"
-            },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Brisbane"
-            }
-        ],
-        "5-4": [{
-            "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-            "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-            "city": "Melbourne"
-        },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
-                "city": "Sydney"
-            },
-            {
-                "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
-                "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
-                "city": "Brisbane"
-            }
-        ]
-    }
+    # initialize the output json
+    res = init_date_line_json(date)
+
+    # get view from each db
+    for city in CITY_LIST:
+        db = list(COUCH_DB.view_db(city, scenario + '/tweets_time_line'))
+
+        # get required date
+        for d in range(5):
+            target_date = str((date+timedelta(days=d)).strftime("%m-%d"))
+
+            # convert the data form in view to required json
+            for item in db:
+                dic = dict(item)
+                if datetime.strptime(dic['key'].split(' ')[0], '%m/%d') == datetime.strptime(target_date, '%m-%d'):
+                    for target in res[target_date]:
+                        if target["city"].lower() == city:
+                            target["num"][int(dic["key"].split(' ')[1])//2] = dic["value"]
+
+    return res
+
+# initialize time line json
+def init_date_line_json(t):
+    json = {}
+    city = ["Melbourne", "Sydney", "Brisbane"]
+
+    # record 5 consecutive days tweets marked with date
+    for d in range(5):
+        target = str((t+timedelta(days=d)).strftime("%m-%d"))
+
+        # each day has three cities records
+        json[target] = [{},{},{}]
+        for i in range(3):
+            json[target][i]["city"] = city[i]
+            json[target][i]["time"] = []
+            json[target][i]["num"] = [0 for k in range(12)]
+            for time in range(12):
+                json[target][i]["time"].append(f"{2*time}:00-{2*time + 2}:00")
     return json
+    # json = {
+    #     "4-30": [{
+    #         "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #         "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
+    #         "city": "Melbourne"
+    #     },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Sydney"
+    #         },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+    #             "city": "Brisbane"
+    #         }
+    #     ],
+    #     "5-1": [{
+    #         "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #         "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #         "city": "Melbourne"
+    #     },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Sydney"
+    #         },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+    #             "city": "Brisbane"
+    #         }
+    #     ],
+    #     "5-2": [{
+    #         "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #         "num": [13, 43, 55, 88, 56, 12, 46, 46, 34, 34, 56, 78],
+    #         "city": "Melbourne"
+    #     },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Sydney"
+    #         },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+    #             "city": "Brisbane"
+    #         }
+    #     ],
+    #     "5-3": [{
+    #         "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #         "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+    #         "city": "Melbourne"
+    #     },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Sydney"
+    #         },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Brisbane"
+    #         }
+    #     ],
+    #     "5-4": [{
+    #         "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #         "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #         "city": "Melbourne"
+    #     },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [25, 88, 23, 12, 12, 45, 24, 65, 35, 25, 72, 25],
+    #             "city": "Sydney"
+    #         },
+    #         {
+    #             "time": ["0:00-2:00", "2:00-4:00", "4:00-6:00", "22:00-24:00"],
+    #             "num": [33, 25, 67, 12, 56, 43, 56, 32, 12, 34, 53, 43],
+    #             "city": "Brisbane"
+    #         }
+    #     ]
+    # }
+    # return json
 
 
 @app.route('/main/bar')
 def main_bar():
-    json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
-    return json
+    """
+
+    :return:
+    """
+    global SCENARIO
+    scenario = SCENARIO.lower()
+    scenario += '_scenario'
+    res = emotion.emotion_total(CITY_LIST, scenario)
+    return res
+    # json = {'city': ['Melbourne', 'Sydney', 'Brisbane'], 'values1': [100, 120, 80], 'values2': [-90, -120, -90]}
+    # return json
 
 
 @app.route('/main/pie')
 def main_pie():
-    json = {
-        "rows": [{
-            "name": "Melbourne (22%)",
-            "value": 23
-        },
-            {
-                "name": "Sydney (38%)",
-                "value": 44
-            },
-            {
-                "name": "Brisbane (40%)",
-                "value": 45
-            }
-        ]
-    }
+    global SCENARIO
+    scenario = SCENARIO.lower()
+    scenario += '_scenario'
+
+    return tweets_amount.tweets_amount_total(COUCH_DB, CITY_LIST, scenario)
+
+    # json = {
+    #     "rows": [{
+    #         "name": "Melbourne (22%)",
+    #         "value": 23
+    #     },
+    #         {
+    #             "name": "Sydney (38%)",
+    #             "value": 44
+    #         },
+    #         {
+    #             "name": "Brisbane (40%)",
+    #             "value": 45
+    #         }
+    #     ]
+    # }
     # json = {'sections': [{'name': 'Sam S Club', 'value': 1000}], 'highlights': [True]}
-    return json
+
 
 
 @app.route('/main/cloud')
 def main_cloud():
-    json = {'rows': [{'name': 'Sam S Club', 'value': 1000}, {'name': 'hospital', 'value': 1300}]}
-    return json
+    """
+
+    :return:
+    """
+    global SCENARIO
+    scenario = SCENARIO.lower()
+    scenario += '_scenario'
+    temp = word_cloud.word_cloud_total(CITY_LIST, scenario)
+    res = {'rows': []}
+    for k, v in temp.items():
+        res['rows'].append({'name': k, 'value': v})
+    # json = {'rows': [{'name': 'Sam S Club', 'value': 1000}, {'name': 'hospital', 'value': 1300}]}
+    return res
 
 
 @app.route('/page/bar')
@@ -453,4 +532,5 @@ def search_cloud():
 
 
 if __name__ == '__main__':
+
     app.run(port=PORT, debug=True)

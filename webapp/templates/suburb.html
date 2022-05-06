@@ -134,7 +134,7 @@
         cloud.dispose();
         time=document.getElementById("time").value.split("/");
         keyword=document.getElementById("keyword").value;
-        createMap("chart3","/suburb/map?date="+new Date(time[2],time[1],time[0])+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        createMap("chart3","/suburb/map?date="+time[1]+"-"+time[0]+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
         createSuburbPieChart("chart2","/suburb/pie?keyword="+keyword);
         createBarChart("chart4","/suburb/bar?keyword="+keyword);
         createCloud("chart5", "/suburb/cloud?keyword="+keyword);
@@ -151,7 +151,7 @@
     var keyword=document.getElementById("keyword").value;
     document.getElementById('suburb').classList.add('active');
     document.getElementById("li").innerHTML='Suburb Page for Keywords: '+keyword;
-    createMap("chart3","/suburb/map?date="+new Date(time[2],time[1],time[0]),new Date(time[2],time[1],time[0]));
+    createMap("chart3","/suburb/map?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));
     createSuburbPieChart("chart2","/suburb/pie");
     createBarChart("chart4","/suburb/bar");
     createCloud("chart5", "/suburb/cloud");

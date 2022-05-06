@@ -85,4 +85,4 @@ if __name__ == '__main__':
         a = couchDataBase('http://admin:admin@172.26.132.194:5984', db)
         a.createView('environment_scenario', './environment_scenario')
         a.createView('health_scenario', './health_scenario')
-        a.createView('housing_scenario', './housing_scenario')
+        a.createView('house_scenario', './house_scenario')

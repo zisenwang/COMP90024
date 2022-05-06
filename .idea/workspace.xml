@@ -3,30 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="d3c20ac5-9861-4245-963e-4a0cae2fceb9" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/emotion/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/emotion/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/emotion/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/emotion/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/polarity/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/polarity/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/polarity/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/polarity/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/tweets_amount/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/tweets_amount/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/tweets_amount/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/tweets_amount/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/tweets_time_line/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/tweets_time_line/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/tweets_time_line/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/tweets_time_line/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/word_cloud/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/word_cloud/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/housing_scenario/word_cloud/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/house_scenario/word_cloud/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/.idea/test_all.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/areaLabel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/aurinData.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/emotion.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/inner.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/search_content.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/static/images/mel_map.svg" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/images/mel_map.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/static/js/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/charts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/static/js/charts_back.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/charts_back.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/static/js/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/echarts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/couchDbHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/templates/page.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/search engine.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/search engine.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/templates/suburb.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/suburb.html" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,19 +78,7 @@
       <recent name="D:\IdeaProjects\COMP90024\webapp" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="couchDbHandler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="COMP90024" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,6 +93,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_all/couchDbHandler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="COMP90024" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\anaconda\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/webapp/MapReduce" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/webapp/MapReduce/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,8 +145,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main (1)" />
+      </list>
+    </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -189,9 +199,6 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -222,21 +229,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
-    </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP90024$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1651831116013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapp/MapReduce" />
+    <SUITE FILE_PATH="coverage/COMP90024$couchDbHandler.coverage" NAME="couchDbHandler Coverage Results" MODIFIED="1651652703731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_all" />
+    <SUITE FILE_PATH="coverage/COMP90024$main.coverage" NAME="main Coverage Results" MODIFIED="1651834512093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapp" />
   </component>
 </project>

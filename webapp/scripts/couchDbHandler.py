@@ -59,6 +59,7 @@ class CouchDB(object):
 
     def view_db(self, db_name, view_name):
         db = CouchDB.get_db(self, db_name)
+        # view_name should be in the form of 'design_doc/view'
         view = db.view(view_name, group=True)
         return view
 
