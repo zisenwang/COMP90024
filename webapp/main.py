@@ -153,7 +153,7 @@ def page_bar():
     for k, v in temp.items():
         json['keyword'].append(k)
         json['values'].append(v)
-        if len(json['keyword']) == 20:
+        if len(json['keyword']) == 5:
             break
     return json
 
