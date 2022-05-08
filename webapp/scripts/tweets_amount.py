@@ -1,6 +1,17 @@
-def tweets_amount(couchdb, database, scenario):
-    db = couchdb.view_db(database, f"{scenario}/tweets_amount")
-    return {database: list(db)[0]["value"]}
+from webapp.scripts.search_content import search_content
+
+
+def tweets_amount(couchdb, db_name, keyword):
+    if keyword == '':
+        keyword = "dontrepeatplz"
+        if not couchdb.check_view(db_name, keyword, "tweets_amount"):
+            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", '', search_content('default'))
+    else:
+        if not couchdb.check_view(db_name, keyword, "tweets_amount"):
+            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", keyword, search_content('default'))
+    db = couchdb.view_db(db_name, f"{keyword}/tweets_amount")
+    return {db_name: list(db)[0]["value"]}
+
 
 def tweets_amount_total(couchdb, lst, scenario):
     res = {"rows": []}

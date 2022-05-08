@@ -4,20 +4,20 @@ function (doc) {
         if (doc.senti){
             var polarity = '';
             if (doc.senti.polarity > 0){
-                polarity = 'positive';
+                polarity = 'Positive';
             }
             if (doc.senti.polarity == 0){
-                polarity = 'neutral';
+                polarity = 'Neutral';
             }
             if (doc.senti.polarity < 0){
-                polarity = 'negative';
+                polarity = 'Negative';
             }
             var sub = '';
             if (doc.senti.subjectivity >= 0.5){
-                sub = 'subjective';
+                sub = 'Subjective';
             }
             if (doc.senti.subjectivity < 0.5){
-                sub = 'objective';
+                sub = 'Objective';
             }
             emit(polarity + ' ' + sub, 1);
         }

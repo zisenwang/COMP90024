@@ -86,3 +86,5 @@ if __name__ == '__main__':
         a.createView('environment_scenario', './environment_scenario')
         a.createView('health_scenario', './health_scenario')
         a.createView('house_scenario', './house_scenario')
+    a = couchDataBase('http://admin:admin@172.26.132.194:5984', "old_tweets_labels")
+    a.createView('suburb', './suburb')
