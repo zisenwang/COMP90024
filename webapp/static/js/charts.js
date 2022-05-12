@@ -64,7 +64,7 @@ function axisFormatter(arr) {
     return data;
 }
 //lineChart
-function createLineChart(id, url,date) {
+function createLineChart(id, url,date,max) {
     $.ajax({
         type: "GET",
         url: url,
@@ -153,7 +153,7 @@ function createLineChart(id, url,date) {
                 {
                     type: 'value',
                     name: 'Heat',
-                    max: 20
+                    max: max
                 }
             ],
             series: [
@@ -167,7 +167,7 @@ function createLineChart(id, url,date) {
     lineChart = echarts.init(document.getElementById(id));
     option && lineChart.setOption(option);
 }
-function updateLineChart(url,date) {
+function updateLineChart(url,date,max) {
     var labels=[];
     var dataMap = {};
     $.ajax({
@@ -215,7 +215,7 @@ function updateLineChart(url,date) {
                         {
                             type: 'value',
                             name: 'Heat',
-                            max: 20
+                            max: max
                         }
                     ],
                     series: [

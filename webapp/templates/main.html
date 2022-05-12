@@ -144,7 +144,7 @@
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
     document.getElementById("li").innerHTML=scenario+' Scenario of Main Page';
-    createLineChart("chart1","/main/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));
+    createLineChart("chart1","/main/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]),20);
     createPieChart("chart2","/main/pie");
     createCloud("chart3","/main/cloud");
     createBarChart("chart4","/main/bar");
@@ -153,7 +153,7 @@
         setInterval("updatePieChart('/main/pie')",5000);
         setInterval("updateCloud('/main/cloud')",5000);
         setInterval("updateBarChart('/main/bar')",5000);
-        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]))",5000);
+        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]),20)",5000);
     });
 
     //aurin

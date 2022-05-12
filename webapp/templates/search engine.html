@@ -128,17 +128,13 @@
     function submit() {
     if(keyword!==document.getElementById("keyword").value) {
         keyword=document.getElementById("keyword").value
-        barChart.dispose();
-        pieChart.dispose();
-        cloud.dispose();
-        createPieChart("chart2","/customized/pie?keyword="+keyword);
-        createCloud("chart3", "/customized/cloud?keyword="+keyword);
-        createBarChart("chart4","/customized/bar?keyword="+keyword);
+        updatePieChart("/customized/pie?keyword="+keyword);
+        updateCloud("/customized/cloud?keyword="+keyword);
+        updateBarChart("/customized/bar?keyword="+keyword);
 
     }
-        lineChart.dispose();
         time=document.getElementById("time").value.split("/");
-        createLineChart("chart1","/customized/line?date="+time[1]+"-"+time[0]+"&keyword="+keyword,new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        updateLineChart("/customized/line?date="+time[1]+"-"+time[0]+"&keyword="+keyword,new Date(time[2],time[1],time[0]),100);//日期来自页面DOM
     }
 
     // initiate page
@@ -155,11 +151,17 @@
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
     document.getElementById("li").innerHTML=scenario+' Scenario';
-    createLineChart("chart1","/customized/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));
+    createLineChart("chart1","/customized/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]),500);
     createPieChart("chart2","/customized/pie");
     createCloud("chart3", "/customized/cloud");
     createBarChart("chart4","/customized/bar");
 
+    $(function (){
+        setInterval("updatePieChart('/main/pie')",5000);
+        setInterval("updateCloud('/main/cloud')",5000);
+        setInterval("updateBarChart('/main/bar')",5000);
+        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]),500)",5000);
+    });
 </script>
 </body>
 
