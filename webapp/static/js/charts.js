@@ -690,7 +690,7 @@ function createPageBarChart(id, url) {
                 data: yList,
                 // stack: 'one',
                 type: 'bar',
-                color:'#00ADB5'
+                color:'#7487a5'
             },
 
         ]
@@ -783,7 +783,7 @@ function createSunburst(id, url) {
 
         },
         legend: {
-            orient: 'vertical',
+            // orient: 'vertical',
             left: 'left'
         },
         visualMap: {
@@ -791,7 +791,7 @@ function createSunburst(id, url) {
             min: 0,
             max: 100,
             inRange: {
-                color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+                color: ['#1a447d', 'rgba(248, 246, 246, 1)', '#d05015']
             }
         },
         series: {
@@ -960,7 +960,7 @@ function createSuburbPieChart(id, url) {
     });
     option = {
         title: {
-            text: 'Heat Over Suburb',
+            text: 'Heat Over Suburbs',
             left: 'center',
             textStyle: {
                 fontSize: 20,
@@ -1199,7 +1199,7 @@ function createboxplot(id) {
     option = {
         title: [
             {
-                text: 'Rental Affordability Index For 3 Cities',
+                text: 'Rental Affordability Index Over Cities',
                 left: 'center',
                 textStyle: {
                     fontSize: 20,
@@ -1316,7 +1316,7 @@ function createboxplot(id) {
 function createHorBarplot(id) {
     option = {
         title: {
-            text: 'Aurin Data',
+            text: 'Medicare Over Cities',
             subtext:'Aurin Data',
             left: 'center',
             textStyle: {
@@ -1394,7 +1394,7 @@ function createHorBarplot(id) {
 function createTwoSideBar(id) {
     option = {
         title: {
-            text: 'Aurin Data',
+            text: 'Disability Benefits Over Suburbs',
             subtext:'Aurin Data',
             left: 'center',
             textStyle: {
