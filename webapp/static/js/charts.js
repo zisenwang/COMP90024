@@ -429,7 +429,6 @@ $.ajax({
         cache: false,
         success: function (res) {
             mapRes=res;
-            console.log(mapRes)
         }
     });
     function dataFormatter() {
@@ -638,6 +637,7 @@ function createRadar(id) {
     option = {
         title: {
             text: 'Cancer Index Over Cities',
+            subtext:'Aurin Data',
             right: 'right',
             top:10,
             textStyle: {
@@ -657,13 +657,13 @@ function createRadar(id) {
         },
         legend: {
             orient: 'vertical',
-            top:50,
+            top:80,
             right: 'right',
             data: ['Breast Cancer', 'Colorectal Cancer', 'Lung Cancer','Melanoma Cancer','Prostate Cancer'],
             itemGap: 20,
             textStyle: {
                 color: '#4480b9',
-                fontSize: 14
+                fontSize: 12
             },
             selectedMode: 'single'
         },
@@ -924,6 +924,16 @@ function createboxplot(id) {
 //aurin health scenario bar chart
 function createHorBarplot(id) {
     option = {
+        title: {
+            text: 'Aurin Data',
+            subtext:'Aurin Data',
+            left: 'center',
+            textStyle: {
+                fontSize: 20,
+                color:"#44444b",
+                fontFamily:"Comic Sans MS"
+            }
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -931,11 +941,11 @@ function createHorBarplot(id) {
                 type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
             }
         },
-        legend: {},
+        legend: {top: 50},
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '3%',
+            top: 100,
             containLabel: true
         },
         xAxis: {
@@ -943,7 +953,7 @@ function createHorBarplot(id) {
         },
         yAxis: {
             type: 'category',
-            data: ['Sydney','Brisbane','Melbourne']
+            data: ['Melbourne','Brisbane','Sydney']
         },
         series: [
             {
@@ -992,6 +1002,16 @@ function createHorBarplot(id) {
 //two side bar chart for suburb
 function createTwoSideBar(id) {
     option = {
+        title: {
+            text: 'Aurin Data',
+            subtext:'Aurin Data',
+            left: 'center',
+            textStyle: {
+                fontSize: 20,
+                color:"#44444b",
+                fontFamily:"Comic Sans MS"
+            }
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -999,12 +1019,13 @@ function createTwoSideBar(id) {
             }
         },
         legend: {
+            top: '15%',
             data: ['Female', 'Male']
         },
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '3%',
+            top: '20%',
             containLabel: true
         },
         xAxis: [
