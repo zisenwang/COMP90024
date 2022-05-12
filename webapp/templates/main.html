@@ -126,9 +126,9 @@
 </section>
 <script>
     function submit() {
-        lineChart.dispose();
+        // lineChart.dispose();
         time=document.getElementById("time").value.split("/");
-        createLineChart("chart1","/main/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));//日期来自页面DOM
+        updateLineChart("/main/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));//日期来自页面DOM
     }
 
     // initiate page
@@ -146,8 +146,16 @@
     document.getElementById("li").innerHTML=scenario+' Scenario of Main Page';
     createLineChart("chart1","/main/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]));
     createPieChart("chart2","/main/pie");
-    createCloud("chart3", "/main/cloud");
+    createCloud("chart3","/main/cloud");
     createBarChart("chart4","/main/bar");
+
+    $(function (){
+        setInterval("updatePieChart('/main/pie')",5000);
+        setInterval("updateCloud('/main/cloud')",5000);
+        setInterval("updateBarChart('/main/bar')",5000);
+        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]))",5000);
+    });
+
     //aurin
     if(scenario==="Environment") createRadar("chart5");
     if(scenario==="Health") createHorBarplot("chart5");

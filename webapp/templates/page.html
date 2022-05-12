@@ -124,9 +124,14 @@
         document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
         document.getElementById("li").innerHTML=scenario+' Scenario of '+city;
 
-
         createPageBarChart("chart1", "/page/bar");
         createSunburst("chart2", "/page/sunburst");
+
+        $(function (){
+            setInterval("updatePageBarChart('/page/bar')",5000);
+            setInterval("updateSunburst('/page/sunburst')",5000);
+        });
+
     </script>
 </body>
 

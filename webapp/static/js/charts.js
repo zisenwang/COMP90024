@@ -49,29 +49,29 @@ var dict=[
 ]
 
 function axisFormatter(arr) {
-        var data=[];
-        for(var i=0;i<arr.length;i++) {
-            if(i%2===0) {
-                data[i]={
-                        value: arr[i],
-                        symbol: 'diamond',
-                        symbolSize: 16
-                }
-            } else {
-                data[i]=arr[i];
+    var data=[];
+    for(var i=0;i<arr.length;i++) {
+        if(i%2===0) {
+            data[i]={
+                value: arr[i],
+                symbol: 'diamond',
+                symbolSize: 16
             }
+        } else {
+            data[i]=arr[i];
         }
-        return data;
+    }
+    return data;
 }
 //lineChart
 function createLineChart(id, url,date) {
-$.ajax({
+    $.ajax({
         type: "GET",
         url: url,
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
         success: function (res) {
             lineRes=res;
         }
@@ -91,7 +91,7 @@ $.ajax({
             dates[n]=Object.keys(obj)[n];
             temp = values[n][k];
             for (var i = 0;i < tList.length; i++) {
-            if(res[dates[n]]===undefined) res[dates[n]]=[];
+                if(res[dates[n]]===undefined) res[dates[n]]=[];
                 res[dates[n]][i] = {
                     name: tList[i],
                     value: temp.num[i]
@@ -111,8 +111,8 @@ $.ajax({
                     fontFamily:"Comic Sans MS"
                 },'subtext': 'date ('+(date.getYear()+1900) + '-'+dates[i]+')',left: 'center'};
             obj.series=[{ 'data': dataMap.city1[dates[i]] },
-                    { 'data': dataMap.city2[dates[i]] },
-                    { 'data': dataMap.city3[dates[i]] }];
+                { 'data': dataMap.city2[dates[i]] },
+                { 'data': dataMap.city3[dates[i]] }];
             options[i]=obj;
         }
         return options;
@@ -167,6 +167,106 @@ $.ajax({
     lineChart = echarts.init(document.getElementById(id));
     option && lineChart.setOption(option);
 }
+function updateLineChart(url,date) {
+    var labels=[];
+    var dataMap = {};
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            lineRes=res;
+            dataMap.city1 = dataFormatter(lineRes,0);
+            dataMap.city2 = dataFormatter(lineRes,1);
+            dataMap.city3 = dataFormatter(lineRes,2);
+            option = {
+                baseOption: {
+                    timeline: {
+                        axisType: 'category',
+                        autoPlay: true,
+                        // currentIndex: 2,
+                        playInterval: 1000,
+                        data: axisFormatter(dates),
+                        label: { interval: 1 },
+                    },
+                    tooltip: {},
+                    legend: {
+                        left: 'right',
+                        data: labels,
+                        orient: 'vertical'
+                    },
+                    calculable: true,
+                    grid: {
+                        top: 80,
+                        bottom: 100
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            axisLabel: { interval: 0 },
+                            data: ["0", "2", "4", "6","8","10","12","14","16","18","20","22"],
+                            splitLine: { show: false }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: 'Heat',
+                            max: 20
+                        }
+                    ],
+                    series: [
+                        { name: labels[0], type: 'line' ,stack: 'Total',areaStyle: {},smooth: true,emphasis: {focus: 'series'},itemStyle: {color: '#eed77e'}},
+                        { name: labels[1], type: 'line' ,stack: 'Total',areaStyle: {},smooth: true,emphasis: {focus: 'series'},itemStyle: {color: '#df9a6c'}},
+                        { name: labels[2], type: 'line' ,stack: 'Total',areaStyle: {},smooth: true,emphasis: {focus: 'series'},itemStyle: {color: '#dd7e6b'}}
+                    ]
+                },
+                options: optionFormatter()
+            };
+            option && lineChart.setOption(option);
+        }
+    });
+    function dataFormatter(obj,k) {
+        var tList = ["0", "2", "4", "6","8","10","12","14","16","18","20","22"];
+        var temp;
+        var day;
+        var values=Object.values(obj);
+        var res={};
+        labels[k]=values[0][k].city;
+        for (var n = 0; n < 5; n++) {
+            dates[n]=Object.keys(obj)[n];
+            temp = values[n][k];
+            for (var i = 0;i < tList.length; i++) {
+                if(res[dates[n]]===undefined) res[dates[n]]=[];
+                res[dates[n]][i] = {
+                    name: tList[i],
+                    value: temp.num[i]
+                };
+            }
+        }
+        return res;
+    }
+    function optionFormatter() {
+        var options=[];
+        for(var i=0;i<dates.length;i++) {
+            var obj={};
+
+            obj.title={'text':'Heat During the Day',textStyle: {
+                    fontSize: 20,
+                    color:"#44444b",
+                    fontFamily:"Comic Sans MS"
+                },'subtext': 'date ('+(date.getYear()+1900) + '-'+dates[i]+')',left: 'center'};
+            obj.series=[{ 'data': dataMap.city1[dates[i]] },
+                { 'data': dataMap.city2[dates[i]] },
+                { 'data': dataMap.city3[dates[i]] }];
+            options[i]=obj;
+        }
+        return options;
+    }
+}
 
 //barChart
 function createBarChart(id, url) {
@@ -176,7 +276,7 @@ function createBarChart(id, url) {
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
         success: function (res) {
             xList = res.city;
             yList = res.values1;
@@ -193,65 +293,148 @@ function createBarChart(id, url) {
                 fontFamily:"Comic Sans MS"
             }
         },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      legend: {
-        data: ['positive','negative']
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      xAxis: [
-        {
-          type: 'value'
-        }
-      ],
-      yAxis: [
-        {
-          type: 'category',
-          axisTick: {
-            show: true
-          },
-          data: xList
-        }
-      ],
-      series: [
-        {
-          name: 'Positive',
-          type: 'bar',
-          stack: 'Total',
-          label: {
-            show: true
-          },
-          emphasis: {
-            focus: 'series'
-          },
-          data: yList
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
         },
-        {
-          name: 'Negative',
-          type: 'bar',
-          stack: 'Total',
-          label: {
-            show: true,
-            position: 'left'
-          },
-          emphasis: {
-            focus: 'series'
-          },
-          data: zList
-        }
-      ]
+        legend: {
+            data: ['positive','negative']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        yAxis: [
+            {
+                type: 'category',
+                axisTick: {
+                    show: true
+                },
+                data: xList
+            }
+        ],
+        series: [
+            {
+                name: 'Positive',
+                type: 'bar',
+                stack: 'Total',
+                label: {
+                    show: true
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: yList
+            },
+            {
+                name: 'Negative',
+                type: 'bar',
+                stack: 'Total',
+                label: {
+                    show: true,
+                    position: 'left'
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: zList
+            }
+        ]
     };
     barChart = echarts.init(document.getElementById(id));
     option && barChart.setOption(option);
+}
+function updateBarChart(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            xList = res.city;
+            yList = res.values1;
+            zList = res.values2;
+            option = {
+                title: {
+                    text: 'Emotion Over Cities',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 20,
+                        color:"#44444b",
+                        fontFamily:"Comic Sans MS"
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['positive','negative']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'category',
+                        axisTick: {
+                            show: true
+                        },
+                        data: xList
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Positive',
+                        type: 'bar',
+                        stack: 'Total',
+                        label: {
+                            show: true
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: yList
+                    },
+                    {
+                        name: 'Negative',
+                        type: 'bar',
+                        stack: 'Total',
+                        label: {
+                            show: true,
+                            position: 'left'
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: zList
+                    }
+                ]
+            };
+            option && barChart.setOption(option);
+        }
+    });
 }
 
 //pieChart
@@ -262,7 +445,7 @@ function createPieChart(id, url) {
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
         success: function (res) {
             sections = res.rows;
         }
@@ -285,7 +468,7 @@ function createPieChart(id, url) {
             right: 'right',
             formatter:function(name){
                 li=name.split(' ');
-			    return li[0];
+                return li[0];
             }
         },
 
@@ -308,52 +491,149 @@ function createPieChart(id, url) {
     pieChart = echarts.init(document.getElementById(id));
     option && pieChart.setOption(option);
 }
-    //cloud
-    function createCloud(id, url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: {arg: "demo"}, //必须是key-value值
-            dataType: "json",
-            async: false,
-            cache: false,
-            success: function (res) {
-                rows = res.rows;
-
-            }
-        });
-
-        option = {
-            tooltip: {},
-            series: [ {
-                type: 'wordCloud',
-                gridSize: 2,
-                sizeRange: [12, 50],
-                rotationRange: [-90, 90],
-                shape: 'pentagon',
-                width: 600,
-                height: 400,
-                drawOutOfBound: false,
-                textStyle: {
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                        ].join(',') + ')';
-                    }
-                },
-                emphasis: {
+function updatePieChart(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            sections = res.rows;
+            option = {
+                title: {
+                    text: 'Heat Over Cities',
+                    left: 'center',
                     textStyle: {
-                        shadowBlur: 10,
-                        shadowColor: '#333'
+                        fontSize: 20,
+                        color:"#44444b",
+                        fontFamily:"Comic Sans MS"
                     }
                 },
-                data: rows
-            } ]
-        };
-        cloud = echarts.init(document.getElementById(id));
-        option && cloud.setOption(option);
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    right: 'right',
+                    formatter:function(name){
+                        li=name.split(' ');
+                        return li[0];
+                    }
+                },
+
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '50%',
+                        data: sections,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            option && pieChart.setOption(option);
+        }
+    });
+}
+
+//cloud
+function createCloud(id, url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: false,
+        cache: true,
+        success: function (res) {
+            rows = res.rows;
+
+        }
+    });
+
+    option = {
+        tooltip: {},
+        series: [ {
+            type: 'wordCloud',
+            gridSize: 2,
+            sizeRange: [12, 50],
+            rotationRange: [-90, 90],
+            shape: 'pentagon',
+            width: 600,
+            height: 400,
+            drawOutOfBound: false,
+            textStyle: {
+                color: function () {
+                    return 'rgb(' + [
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160)
+                    ].join(',') + ')';
+                }
+            },
+            emphasis: {
+                textStyle: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: rows
+        } ]
+    };
+    cloud = echarts.init(document.getElementById(id));
+    option && cloud.setOption(option);
+}
+function updateCloud(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            rows = res.rows;
+            option = {
+                tooltip: {},
+                series: [ {
+                    type: 'wordCloud',
+                    gridSize: 2,
+                    sizeRange: [12, 50],
+                    rotationRange: [-90, 90],
+                    shape: 'pentagon',
+                    width: 600,
+                    height: 400,
+                    drawOutOfBound: false,
+                    textStyle: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        textStyle: {
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    data: rows
+                } ]
+            };
+            option && cloud.setOption(option);
+        }
+    });
+
 }
 
 //PagebarChart
@@ -364,7 +644,7 @@ function createPageBarChart(id, url) {
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
         success: function (res) {
             xList = res.keyword;
             yList = res.values;
@@ -383,14 +663,14 @@ function createPageBarChart(id, url) {
     }
     option = {
         title: {
-                text: 'Frequency of Words',
-                left: 'center',
-                textStyle: {
+            text: 'Frequency of Words',
+            left: 'center',
+            textStyle: {
                 fontSize: 25,
                 color:"#44444b",
                 fontFamily:"Comic Sans MS"
             }
-            },
+        },
         tooltip:{},
         legend: {
             data: ['wordcount'],
@@ -418,26 +698,191 @@ function createPageBarChart(id, url) {
     barChart = echarts.init(document.getElementById(id));
     option && barChart.setOption(option);
 }
+function updatePageBarChart(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            xList = res.keyword;
+            yList = res.values;
+            highlightList = res.highlights;
+            for (var i = 0; i < yList.length; i++) {
+                if (highlightList[i] === true) {
+                    yList[i] = {
+                        value: yList[i],
+                    };
+                }
+            }
+            option = {
+                title: {
+                    text: 'Frequency of Words',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 25,
+                        color:"#44444b",
+                        fontFamily:"Comic Sans MS"
+                    }
+                },
+                tooltip:{},
+                legend: {
+                    data: ['wordcount'],
+                    align: 'left',
+                    left: 20,
+                },
+                xAxis: {
+                    type: 'category',
+                    data: xList
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'wordcount',
+                        data: yList,
+                        // stack: 'one',
+                        type: 'bar',
+                        color:'#00ADB5'
+                    },
 
-function createMap(id,url,date) {
-$.ajax({
+                ]
+            };
+            option && barChart.setOption(option);
+        }
+    });
+}
+
+//page sunburst
+function createSunburst(id, url) {
+    $.ajax({
         type: "GET",
         url: url,
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
+        success: function (res) {
+            sections = res.rows;
+        }
+    });
+    option = {
+        title: {
+            text: 'Emotion',
+            left: 'left',
+            textStyle: {
+                fontSize: 25,
+                color:"#44444b",
+                fontFamily:"Comic Sans MS"
+            }
+        },
+        tooltip: {
+
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        visualMap: {
+            type: 'continuous',
+            min: 0,
+            max: 100,
+            inRange: {
+                color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+            }
+        },
+        series: {
+            type: 'sunburst',
+            data: sections,
+            radius: ['15%', '90%'],
+            label: {
+                rotate: 'radial',
+                color:'rgba(248, 246, 246, 1)'
+            },
+            itemStyle: {
+                borderWidth: 2
+            },
+        }
+    };
+    sunburstChart = echarts.init(document.getElementById(id));
+    option && sunburstChart.setOption(option);
+}
+function updateSunburst(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: true,
+        cache: true,
+        success: function (res) {
+            sections = res.rows;
+            option = {
+                title: {
+                    text: 'Emotion',
+                    left: 'left',
+                    textStyle: {
+                        fontSize: 25,
+                        color:"#44444b",
+                        fontFamily:"Comic Sans MS"
+                    }
+                },
+                tooltip: {
+
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                visualMap: {
+                    type: 'continuous',
+                    min: 0,
+                    max: 100,
+                    inRange: {
+                        color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+                    }
+                },
+                series: {
+                    type: 'sunburst',
+                    data: sections,
+                    radius: ['15%', '90%'],
+                    label: {
+                        rotate: 'radial',
+                        color:'rgba(248, 246, 246, 1)'
+                    },
+                    itemStyle: {
+                        borderWidth: 2
+                    },
+                }
+            };
+            option && sunburstChart.setOption(option);
+        }
+    });
+}
+
+//suburb map
+function createMap(id,url,date) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {arg: "demo"}, //必须是key-value值
+        dataType: "json",
+        async: false,
+        cache: true,
         success: function (res) {
             mapRes=res;
         }
     });
     function dataFormatter() {
-    for (var n = 0; n < 5; n++) {
+        for (var n = 0; n < 5; n++) {
             dates[n]=Object.keys(mapRes)[n];
-    }
-    dataMap={}
+        }
+        dataMap={}
         for(var i=0;i<dates.length;i++) {
-        dataMap[dates[i]]=[];
+            dataMap[dates[i]]=[];
             for(var j=0;j<dict.length;j++) {
                 dataMap[dates[i]][j]=[];
                 dataMap[dates[i]][j][0]=dict[j][0];
@@ -467,13 +912,13 @@ $.ajax({
                 zoom:1.2
             },
             title: {
-            text: 'Heat Distribution',
+                text: 'Heat Distribution',
                 textStyle: {
                     fontSize: 20,
                     color:"#44444b",
                     fontFamily:"Comic Sans MS"
                 }
-             },
+            },
 
             series: {
                 type: 'effectScatter',
@@ -508,7 +953,7 @@ function createSuburbPieChart(id, url) {
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
         async: false,
-        cache: false,
+        cache: true,
         success: function (res) {
             sections = res.rows;
         }
@@ -544,61 +989,7 @@ function createSuburbPieChart(id, url) {
     option && pieChart.setOption(option);
 }
 
-//page sunburst
-function createSunburst(id, url) {
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: {arg: "demo"}, //必须是key-value值
-        dataType: "json",
-        async: false,
-        cache: false,
-        success: function (res) {
-            sections = res.rows;
-        }
-    });
-    option = {
-        title: {
-            text: 'Emotion',
-            left: 'left',
-            textStyle: {
-                fontSize: 25,
-                color:"#44444b",
-                fontFamily:"Comic Sans MS"
-            }
-        },
-        tooltip: {
-
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left'
-        },
-        visualMap: {
-            type: 'continuous',
-            min: 0,
-            max: 100,
-            inRange: {
-              color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
-            }
-          },
-        series: {
-            type: 'sunburst',
-            data: sections,
-            radius: ['15%', '90%'],
-            label: {
-                rotate: 'radial',
-                color:'rgba(248, 246, 246, 1)'
-            },
-             itemStyle: {
-                borderWidth: 2
-            },
-        }
-    };
-    sunburstChart = echarts.init(document.getElementById(id));
-    option && sunburstChart.setOption(option);
-}
-
+//aurin ragar
 function createRadar(id) {
     // Schema:
 // date,AQIindex,PM2.5,PM10,CO,NO2,SO2
@@ -803,7 +1194,7 @@ function createRadar(id) {
     option && radar.setOption(option);
 }
 
-//aurin_box_plot
+//aurin boxplot
 function createboxplot(id) {
     option = {
         title: [
@@ -999,7 +1390,7 @@ function createHorBarplot(id) {
     option && horbarChart.setOption(option);
 }
 
-//two side bar chart for suburb
+//aurin two side bar chart for suburb
 function createTwoSideBar(id) {
     option = {
         title: {

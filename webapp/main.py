@@ -4,7 +4,7 @@ from webapp.scripts import emotion, word_cloud, couchDbHandler, tweets_amount, t
     suburb_amount
 from datetime import datetime, timedelta
 
-PORT = 8888
+PORT = 8005
 app = Flask(__name__)
 
 app.debug = True
