@@ -109,7 +109,7 @@
             </div>
         </div>
         <div id="container" style="width:1100px">
-            <div id ='chart1' style="height:350px;width:1000px;float:left;">
+            <div id ='chart1' style="height:350px;width:1100px;float:left;">
             </div>
             <div id ='blank1' style="height:50px;width:1200px;float:left;">
             </div>
@@ -151,7 +151,7 @@
     document.getElementById("h1").innerHTML=scenario+' Scenario';
     document.getElementById("p").innerHTML='Welcome to '+scenario+' Scenario';
     document.getElementById("li").innerHTML=scenario+' Scenario';
-    createLineChart("chart1","/customized/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]),600);
+    createLineChart("chart1","/customized/line?date="+time[1]+"-"+time[0],new Date(time[2],time[1],time[0]),1500);
     createPieChart("chart2","/customized/pie");
     createCloud("chart3", "/customized/cloud");
     createBarChart("chart4","/customized/bar");
@@ -160,7 +160,7 @@
         setInterval("updatePieChart('/main/pie')",5000);
         setInterval("updateCloud('/main/cloud')",5000);
         setInterval("updateBarChart('/main/bar')",5000);
-        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]),600)",5000);
+        setInterval("updateLineChart('/main/line?date='+time[1]+'-'+time[0],new Date(time[2],time[1],time[0]),1500)",5000);
     });
 </script>
 </body>

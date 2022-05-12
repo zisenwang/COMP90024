@@ -37,7 +37,8 @@ def tweets_time_line(couchdb, date, lst, keyword):
                     for target in res[target_date]:
                         if target["city"].lower() == city:
                             target["num"][int(dic["key"].split(' ')[1])//2] = dic["value"]
-
+        if keyword=="dontrepeatplz":
+            keyword = ''
     return res
 
 
