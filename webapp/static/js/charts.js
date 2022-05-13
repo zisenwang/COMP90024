@@ -791,7 +791,7 @@ function createSunburst(id, url) {
             min: 0,
             max: 100,
             inRange: {
-                color: ['#1a447d', 'rgba(248, 246, 246, 1)', '#d05015']
+                color: ['#1a447d', '#aaa594', '#b03b22']
             }
         },
         series: {
@@ -842,7 +842,7 @@ function updateSunburst(url) {
                     min: 0,
                     max: 100,
                     inRange: {
-                        color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+                        color: ['#1a447d', '#aaa594', '#b03b22']
                     }
                 },
                 series: {
