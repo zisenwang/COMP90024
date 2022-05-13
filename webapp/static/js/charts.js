@@ -791,7 +791,7 @@ function createSunburst(id, url) {
             min: 0,
             max: 100,
             inRange: {
-                color: ['#1a447d', '#aaa594', '#b03b22']
+                color: ['#1a447d', '#d0c7c5', '#d05015']
             }
         },
         series: {
@@ -799,7 +799,7 @@ function createSunburst(id, url) {
             data: sections,
             radius: ['15%', '90%'],
             label: {
-                rotate: 'radial',
+                rotate: 'tangential',
                 color:'rgba(248, 246, 246, 1)'
             },
             itemStyle: {
@@ -842,7 +842,7 @@ function updateSunburst(url) {
                     min: 0,
                     max: 100,
                     inRange: {
-                        color: ['#1a447d', '#aaa594', '#b03b22']
+                        color: ['#1a447d', '#d0c7c5', '#d05015']
                     }
                 },
                 series: {
