@@ -285,7 +285,7 @@ function createBarChart(id, url) {
     });
     option = {
         title: {
-            text: 'Emotion Over Cities',
+            text: 'Emotion Over Suburbs',
             left: 'center',
             textStyle: {
                 fontSize: 20,
@@ -367,7 +367,7 @@ function updateBarChart(url) {
             zList = res.values2;
             option = {
                 title: {
-                    text: 'Emotion Over Cities',
+                    text: 'Emotion Over Suburbs',
                     left: 'center',
                     textStyle: {
                         fontSize: 20,
