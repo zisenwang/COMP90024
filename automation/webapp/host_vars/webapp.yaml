@@ -1,5 +1,0 @@
----
-# docker file
-docker_file: ./Dockerfile
-docker_compose: ./docker-compose.yml
-requirement: ./requirements.txt

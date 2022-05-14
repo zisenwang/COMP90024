@@ -1,7 +1,0 @@
----
-- name: Stop crawling
-  become:
-    yes
-  shell: sudo docker-compose stop
-  args:
-    chdir: '/home/ubuntu/COMP90024/COMP90024/crawler'

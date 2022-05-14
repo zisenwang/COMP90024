@@ -1,7 +1,0 @@
----
-- name: Restart container
-  become:
-    yes
-  shell: sudo docker-compose restart
-  args:
-    chdir: '/home/ubuntu/COMP90024/COMP90024/crawler'
