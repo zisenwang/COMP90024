@@ -1,0 +1,26 @@
+{
+    "API": {
+        "api_key": "N8rmJ7NkHVePxaGtZjKVwl2Z0",
+        "api_secret": "IvcyQku74WQNjMAfJhTOJBn5KxCukodLDT0k3pSrWCbcS09jwA",
+        "access_token": "1514509216417202177-6cuyVrkoEn9YBlmpMlQOrT0LOggoY5",
+        "access_token_secret": "8hRLeETz82kxy3JjOMrbBLi1K5qIPxbUMnCGleY4Jja0M",
+        "bearer_token": "AAAAAAAAAAAAAAAAAAAAAL7tbQEAAAAAhQ38dlcTwRleZVoWv0vdaJlLF6Q%3D0wtvmc0bXikhaOQ7OkgbhMGWFyC7YapYd8LKsUOwtlP6pgmM26"
+    },
+    "KEY WORDS":
+        ["brisbane","covid","-filter:retweets"],
+    "LOCATIONS": {
+        "coordinates": [
+                -27.467778,
+                153.028056
+            ],
+            "bounding_box": [
+                152.668522848,
+                -27.767440994,
+                153.31787024,
+                -26.996844991
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "brisbane"
+
+}

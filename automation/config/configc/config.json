@@ -1,0 +1,25 @@
+{
+    "API": {
+        "api_key": "0gHvc3uZd8GqaUGjz7wlFGzcy",
+        "api_secret": "3JGJCchFHEGGHCm4TRSrw6KFde3iKbfH7jMLDcBVyPMwE5oKyZ",
+        "access_token": "1513177050416177159-VVsJHRmOy9JrcwAJLkkdtJAOQlKyzq",
+        "access_token_secret": "JwyOyPWwYuP6uCJATJFPvNZnjQNhLogwFWQvICpmKKxDt",
+        "bearer_token": "AAAAAAAAAAAAAAAAAAAAAOBhbQEAAAAAJmNvIfydA96UYuvaEvnLb3UxDM0%3DpsklHRwBgt36tbBukNMK47bigOxh4O6sbciSV7wDKES3YlQAYE"
+    },
+    "KEY WORDS":
+        ["sydney","covid","-filter:retweets"],
+    "LOCATIONS": {
+        "coordinates": [
+                -33.865,
+                151.209444
+            ],
+            "bounding_box": [
+                150.520928608,
+                -34.1183470085,
+                151.343020992,
+                -33.578140996
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "sydney"
+}

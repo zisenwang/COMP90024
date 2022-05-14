@@ -1,0 +1,5 @@
+---
+# config json file
+configa: ../config/configa/config.json
+configb: ../config/configb/config.json
+configc: ../config/configc/config.json

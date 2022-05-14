@@ -1,0 +1,100 @@
+.
+├── config
+│   ├── COMP90024.pem
+│   ├── configa
+│   │   └── config.json
+│   ├── configb
+│   │   └── config.json
+│   ├── configc
+│   │   └── config.json
+│   ├── inventory
+│   │   └── hosts
+│   └── unimelb-COMP90024-2022-grp-19-openrc.sh
+├── couchdb
+│   ├── couchdb.yaml
+│   ├── host_vars
+│   │   └── couchdb.yaml
+│   ├── roles
+│   │   ├── common
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── couchdb-cluster
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── couchdb-start
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   └── docker
+│   │       └── tasks
+│   │           └── main.yaml
+│   └── run-wp.sh
+├── crawler
+│   ├── clear_none.sh
+│   ├── crawler.yaml
+│   ├── host_vars
+│   │   └── config.yaml
+│   ├── restart-crawler.yaml
+│   ├── restart.sh
+│   ├── roles
+│   │   ├── crawler-restart
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── crawler-setup-a
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── crawler-setup-b
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── crawler-setup-c
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   └── crawler-stop
+│   │       └── tasks
+│   │           └── main.yaml
+│   ├── run.sh
+│   ├── stop-crawler.yaml
+│   └── stop.sh
+├── mrc
+│   ├── host_vars
+│   │   └── nectar.yaml
+│   ├── mrc password.txt
+│   ├── nectar.yaml
+│   ├── roles
+│   │   ├── openstack-common
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── openstack-instance
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── openstack-security-group
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   ├── openstack-volume
+│   │   │   └── tasks
+│   │   │       └── main.yaml
+│   │   └── openstack-volume-snapshot
+│   │       └── tasks
+│   │           └── main.yaml
+│   └── run-nectar.sh
+├── temp
+├── tree.txt
+└── webapp
+    ├── Dockerfile
+    ├── docker-compose.yml
+    ├── host_vars
+    │   └── webapp.yaml
+    ├── requirements.txt
+    ├── roles
+    │   ├── common
+    │   │   └── tasks
+    │   │       └── main.yaml
+    │   ├── deploy-webapp
+    │   │   └── tasks
+    │   │       └── main.yaml
+    │   └── docker
+    │       └── tasks
+    │           └── main.yaml
+    ├── run-webapp.sh
+    └── webapp.yaml
+
+51 directories, 46 files

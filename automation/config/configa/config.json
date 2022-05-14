@@ -1,0 +1,25 @@
+{
+    "API": {
+        "api_key": "7NKs7JYPdHFeGUZvxoAB6DI0Q",
+        "api_secret": "dvLHjOwhyCDuZS3mHnBdzJIrsVntEMigBYuw2NxTrFKJhUgbk1",
+        "access_token": "1512598737087975430-0sYcEIt0IkI0NbWFV0vnmKjLdMEo39",
+        "access_token_secret": "6xkKLijnPibBzcZa3VVU0gJdecsPZ1PJD2bQ34DcVTPJ3",
+        "bearer_token": "AAAAAAAAAAAAAAAAAAAAABUqbQEAAAAAFkfb%2BAcgD3uKSKQHUvc7xoucVDg%3DOuUXpKuViVwWAvZFBJVBNJmRfJ8rpGvC36RtwJwuvXBBVS4Aih"
+    },
+    "KEY WORDS":
+        ["melbourne","covid","-filter:retweets"],
+    "LOCATIONS": {
+        "coordinates": [
+                -37.813611,
+                144.963056
+            ],
+            "bounding_box": [
+                144.593741856,
+                -38.433859306,
+                145.512528832,
+                -37.5112737225
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "melbourne"
+}

@@ -1,0 +1,23 @@
+.
+├── couchdb.yaml
+├── host_vars
+│   └── couchdb.yaml
+├── roles
+│   ├── common
+│   │   └── tasks
+│   │       └── main.yaml
+│   ├── couchdb-cluster
+│   │   └── tasks
+│   │       └── main.yaml
+│   ├── couchdb-start
+│   │   └── tasks
+│   │       └── main.yaml
+│   └── docker
+│       └── tasks
+│           └── main.yaml
+├── run-wp.sh
+└── tree.txt
+
+10 directories, 8 files
+
+
