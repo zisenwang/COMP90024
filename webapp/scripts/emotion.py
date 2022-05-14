@@ -1,4 +1,4 @@
-from webapp.scripts.search_content import search_content
+from search_content import search_content
 
 
 def emotion(couchdb, db_name, keyword):

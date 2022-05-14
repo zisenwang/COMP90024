@@ -1,4 +1,3 @@
-from webapp.scripts import couchDbHandler
 def suburb_bar(couchdb):
     db = couchdb.view_db("old_tweets_labels", "suburb/label")
     res = {}

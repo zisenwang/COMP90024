@@ -2,8 +2,7 @@
 # input: view name
 # output: json
 import requests
-from webapp.scripts.couchDbHandler import CouchDB
-from webapp.scripts.search_content import search_content
+from search_content import search_content
 from datetime import datetime
 
 stopwords_list = requests.get(
