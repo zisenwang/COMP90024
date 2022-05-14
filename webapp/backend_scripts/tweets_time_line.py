@@ -20,10 +20,10 @@ def tweets_time_line(couchdb, date, lst, keyword):
         if keyword == '':
             keyword = "dontrepeatplz"
             if not couchdb.check_view(city, keyword, "tweets_time_line"):
-                couchdb.create_dynamic_view(city, keyword, "tweets_time_line", '', search_content('line'))
+                couchdb.create_dynamic_view(city, keyword, "tweets_time_line", '', search_content.search_content('line'))
         else:
             if not couchdb.check_view(city, keyword, "tweets_time_line"):
-                couchdb.create_dynamic_view(city, keyword, "tweets_time_line", keyword, search_content('line'))
+                couchdb.create_dynamic_view(city, keyword, "tweets_time_line", keyword, search_content.search_content('line'))
         db = list(couchdb.view_db(city, keyword + '/tweets_time_line'))
 
         # get required date

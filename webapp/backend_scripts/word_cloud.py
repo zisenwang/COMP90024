@@ -15,10 +15,10 @@ def word_cloud(couchdb, db_name, keyword):
     if keyword == '':
         keyword = "dontrepeatplz"
         if not couchdb.check_view(db_name, keyword, "word_cloud"):
-            couchdb.create_dynamic_view(db_name, keyword, "word_cloud", '', search_content('word_cloud'))
+            couchdb.create_dynamic_view(db_name, keyword, "word_cloud", '', search_content.search_content('word_cloud'))
     else:
         if not couchdb.check_view(db_name, keyword, "word_cloud"):
-            couchdb.create_dynamic_view(db_name, keyword, "word_cloud", keyword, search_content('word_cloud'))
+            couchdb.create_dynamic_view(db_name, keyword, "word_cloud", keyword, search_content.search_content('word_cloud'))
     db = couchdb.view_db(db_name, f"{keyword}/word_cloud")
     res = {}
     for item in list(db):

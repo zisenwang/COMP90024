@@ -5,10 +5,10 @@ def emotion(couchdb, db_name, keyword):
     if keyword == '':
         keyword = "dontrepeatplz"
         if not couchdb.check_view(db_name, keyword, "emotion"):
-            couchdb.create_dynamic_view(db_name, keyword, "emotion", '', search_content('emotion'))
+            couchdb.create_dynamic_view(db_name, keyword, "emotion", '', search_content.search_content('emotion'))
     else:
         if not couchdb.check_view(db_name, keyword, "emotion"):
-            couchdb.create_dynamic_view(db_name, keyword, "emotion", keyword, search_content('emotion'))
+            couchdb.create_dynamic_view(db_name, keyword, "emotion", keyword, search_content.search_content('emotion'))
     db = couchdb.view_db(db_name, f"{keyword}/emotion")
 
     res = {}

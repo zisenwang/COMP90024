@@ -6,10 +6,10 @@ def tweets_amount_city(db_name, keyword):
     if keyword == '':
         keyword = "dontrepeatplz"
         if not CouchDB.check_view(a, db_name, keyword, "default"):
-            CouchDB.create_dynamic_view(a, db_name, keyword, "default", '', search_content('default'))
+            CouchDB.create_dynamic_view(a, db_name, keyword, "default", '', search_content.search_content('default'))
     else:
         if not CouchDB.check_view(a, db_name, keyword, "default"):
-            CouchDB.create_dynamic_view(a, db_name, keyword, "default", keyword, search_content('default'))
+            CouchDB.create_dynamic_view(a, db_name, keyword, "default", keyword, search_content.search_content('default'))
     db = CouchDB.view_db(a, db_name, f"{keyword}/default")
 
     res = {}

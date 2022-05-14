@@ -3,6 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="b762cc69-b56f-47d5-a086-62d459db8a24" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/emotion/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/emotion/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/polarity/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/polarity/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_time_line/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_time_line/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/word_cloud/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/word_cloud/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/suburb/amount/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/suburb/amount/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/suburb/label/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/suburb/label/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/emotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/emotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount_city.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount_city.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_time_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_time_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/word_cloud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +55,29 @@
       <recent name="E:\ideaPro\COMP90024\webapp\static\js" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.main (1)">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="COMP90024" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\anaconda\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/webapp/MapReduce" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/webapp/MapReduce/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="COMP90024" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,6 +122,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
@@ -173,6 +213,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP90024$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1652528342101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapp/MapReduce" />
     <SUITE FILE_PATH="coverage/COMP90024$main.coverage" NAME="main Coverage Results" MODIFIED="1652514872375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapp" />
   </component>
 </project>

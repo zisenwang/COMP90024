@@ -9,11 +9,18 @@
     <title>Home</title>
     <link rel="stylesheet" href="../static/css/nicepage.css" media="screen">
     <link rel="stylesheet" href="../static/css/Home.css" media="screen">
+
     <script class="u-script" type="text/javascript" src="../static/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="../static/js/nicepage.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="../static/js/jquery-ui.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.10.4, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
+    <style>
+      @keyframes yellow {
+        100% {background-color: yellow}
+      }
+    </style>
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -48,8 +55,9 @@
               <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-24 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2"><span class="u-file-icon u-icon u-icon-1"><img src="../static/images/041261976a235beeb41aa9299b1287ad.jpg" alt=""></span>
                   <h5 class="u-text u-text-1">The liveability of MELBOURNE</h5>
-                  <p class="u-text u-text-2">Current Streamed Tweets:</p>
-                  <span id="current" style="color:red"></span>
+                  <p class="u-text u-text-2">Current Streamed Tweets:
+                    <span id="current" style="color:red;font-size: 25px;"></span>
+                  </p>
                   <script type="application/javascript">
                     var current;
                     function askCurrent(){
@@ -67,6 +75,12 @@
                     function writeCurrent(){
                         askCurrent();
                         $('#current').html(current);
+                        $('#current').animate({
+                          backgroundColor:"yellow"
+                        },1000)
+                      $('#current').animate({
+                        backgroundColor:"black"
+                      },1000)
                     }
                     window.onload = function(){
                       writeCurrent();

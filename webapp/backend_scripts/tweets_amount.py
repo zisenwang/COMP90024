@@ -5,10 +5,10 @@ def tweets_amount(couchdb, db_name, keyword):
     if keyword == '':
         keyword = "dontrepeatplz"
         if not couchdb.check_view(db_name, keyword, "tweets_amount"):
-            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", '', search_content('default'))
+            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", '', search_content.search_content('default'))
     else:
         if not couchdb.check_view(db_name, keyword, "tweets_amount"):
-            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", keyword, search_content('default'))
+            couchdb.create_dynamic_view(db_name, keyword, "tweets_amount", keyword, search_content.search_content('default'))
     db = couchdb.view_db(db_name, f"{keyword}/tweets_amount")
     return {db_name: list(db)[0]["value"]}
 
