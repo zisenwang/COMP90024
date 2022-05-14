@@ -1,6 +1,8 @@
 Make sure you have a correct config.json file under the same directory, 
 where you have to specify your tokens and keys and information about the city, 
-for more details, please refer to the config.json in this folder.<br>
+for more details, please refer to the config.json in this folder. 
+And if you are just testing the harvester locally, 
+you might have to change the IP address and user information of CouchDB in the main function to fit your own CouchDB.<br>
 For search recent tweets
 ```
 ./tweepy_search_run.sh
@@ -22,4 +24,4 @@ Now you can also use --local argument to specify the local json file to store da
 ```
 python3 ./tweet_harvester_stream.py --time 5 --limit 10 --dbname 'stream_covid_tweets' --local 'stream.json' --config './config.json'
 ```
-Another argument --dbname has been added to specify the name of the database where you want to store the tweets. By default, it is set to "tweets".
+Another argument --dbname has been added to specify the name of the database where you want to store the tweets. By default, it is set to "tweets".<br>
