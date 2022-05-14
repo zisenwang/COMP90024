@@ -8,7 +8,7 @@ def tweets_time_line(couchdb, date, lst, keyword):
     :return: json containing the amount of related tweets in each period
     """
     # get date and scenario name from frontend dom object
-    if not date:
+    if (not date) or ('und' in date):
         date = "4-30"
     date = datetime.strptime(date, '%m-%d')
 

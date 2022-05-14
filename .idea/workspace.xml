@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b762cc69-b56f-47d5-a086-62d459db8a24" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/emotion/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/emotion/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/polarity/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/polarity/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_amount/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_time_line/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/tweets_time_line/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/word_cloud/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/environment_scenario/word_cloud/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/suburb/amount/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/suburb/amount/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/MapReduce/suburb/label/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/MapReduce/suburb/label/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/emotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/emotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount_city.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_amount_city.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/tweets_time_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/tweets_time_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/backend_scripts/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/backend_scripts/word_cloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/static/js/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/static/js/charts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/search engine.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/search engine.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

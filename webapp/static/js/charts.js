@@ -359,7 +359,7 @@ function updateBarChart(url) {
         url: url,
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
-        async: true,
+        async: false,
         cache: true,
         success: function (res) {
             xList = res.city;
@@ -497,7 +497,7 @@ function updatePieChart(url) {
         url: url,
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
-        async: true,
+        async: false,
         cache: true,
         success: function (res) {
             sections = res.rows;
@@ -597,7 +597,7 @@ function updateCloud(url) {
         url: url,
         data: {arg: "demo"}, //必须是key-value值
         dataType: "json",
-        async: true,
+        async: false,
         cache: true,
         success: function (res) {
             rows = res.rows;
@@ -925,7 +925,7 @@ function createMap(id,url,date) {
                 coordinateSystem: 'geo',
                 geoIndex: 0,
                 symbolSize: function (params) {
-                    return Math.pow(Math.log(params[2]),2.5)/18;
+                    return Math.pow(Math.log(params[2]),2.5)/3 ;
                 },
                 itemStyle: {
                     color: '#9e7cd7'

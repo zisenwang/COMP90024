@@ -268,8 +268,11 @@ def search_line():
     :return: json containing the amount of related tweets in each period
     """
     # get date from DOM
-    date = request.args.get('date')
 
+    date = request.args.get('date')
+    global KEYWORD
+    if 'keyword' in request.args:
+        KEYWORD = request.args.get('keyword')
     # call function
     return tweets_time_line.tweets_time_line(COUCH_DB, date, CITY_LIST, KEYWORD)
 
@@ -280,6 +283,9 @@ def search_bar():
     Bar graph in customized keyword page
     :return: the pos v.s. neg bar json
     """
+    global KEYWORD
+    if 'keyword' in request.args:
+        KEYWORD = request.args.get('keyword')
     return emotion.emotion_total(COUCH_DB, CITY_LIST, KEYWORD)
 
 
@@ -289,7 +295,9 @@ def search_pie():
         Pie graph in customized keyword page
         :return: the amounts of tweets in three cities
     """
-
+    global KEYWORD
+    if 'keyword' in request.args:
+        KEYWORD = request.args.get('keyword')
     return tweets_amount.tweets_amount_total(COUCH_DB, CITY_LIST, KEYWORD)
 
 
@@ -299,6 +307,9 @@ def search_cloud():
     use customized keyword and return the formatted data of views
     :return: total word cloud
     """
+    global KEYWORD
+    if 'keyword' in request.args:
+        KEYWORD = request.args.get('keyword')
     temp = word_cloud.word_cloud_total(COUCH_DB, CITY_LIST, KEYWORD)
     res = {'rows': []}
     for k, v in temp.items():
