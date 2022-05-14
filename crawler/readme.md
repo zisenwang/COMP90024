@@ -1,6 +1,6 @@
 Make sure you have a correct config.json file under the same directory, 
-where you have to specify your tokens and keys and also the key words you want to search, 
-in the format of {"API":{"api_key":XXX,"api_secret":XXX,...},"KEY WORDS":["melbourne","covid",...]}.<br>
+where you have to specify your tokens and keys and information about the city, 
+for more details, please refer to the config.json in this folder.<br>
 For search recent tweets
 ```
 ./tweepy_search_run.sh
