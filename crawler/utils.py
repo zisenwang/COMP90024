@@ -1,7 +1,7 @@
 import re
 import couchdb
 import os
-import nltk
+# import nltk
 from textblob import TextBlob as tb
 
 class simpleClassifier(object):
@@ -139,6 +139,7 @@ if __name__=='__main__':
     print(tb('i love you').subjectivity)
     # print(tb('i hate you').polarity)
     # print(tb('i hate you').subjectivity)
+
     # >0 positive
     test1 = clf.sentiment('i love you')
     # <0 negative

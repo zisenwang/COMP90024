@@ -9,12 +9,12 @@ from utils import *
 
 class SearchTweet():
 
-    def __init__(self,api: tweepy.API,db_name:str,couchdb_server:str,file: str):
+    def __init__(self, api: tweepy.API, db_name: str, couchdb_server: str, file: str):
         # havent figured out on how to run this for a certain amount of time
         # self.time
 
         self.api = api
-        self.file = file # possibly changed to couchdb credentials and whatnot
+        self.file = file
 
         if db_name in couchdb.Server(couchdb_server):
             self.db = couchdb.Server(couchdb_server)[db_name]
@@ -37,6 +37,7 @@ class SearchTweet():
                         if tweet['id_str'] not in self.db:
                             dic = {}
                             dic['_id'] = tweet["id_str"]
+                            dic['created_time'] = tweet['created_at']
                             dic['text'] = clf.preprocess(tweet['full_text'])
                             dic['geo'] = tweet['geo']['coordinates'] if tweet['geo'] else 'None'
                             dic['place'] = tweet['place']["bounding_box"]["coordinates"][0] if tweet['place'] else 'None'
@@ -74,7 +75,7 @@ if __name__ == "__main__":
 
     try:
 
-        with open(config,'r') as f:
+        with open(config, 'r') as f:
 
             configuration = json.loads(f.read())
 
@@ -100,6 +101,17 @@ if __name__ == "__main__":
             # retrieve key words to search
             query = ' '.join(configuration['KEY WORDS'])
 
+            # geocode
+            coordinates = []
+            for i in configuration['LOCATIONS']['coordinates']:
+                coordinates.append(str(i))
+            coordinates.append(configuration['LOCATIONS']['scope'])
+            geocode = ','.join(coordinates)
+            del coordinates
+
+            # retrieve specified dbname
+            dbname = args.dbname if args.dbname != "tweets" else configuration["DBNAME"]
+
     except IOError:
         print('The file path of the config file is probably wrong!')
         exit(1)
@@ -113,20 +125,15 @@ if __name__ == "__main__":
     # default query
     # query = "melbourne covid -filter:retweets"
 
-    # latitude,longitude,radius for melb
-    geocode = '-37.813611,144.963056,20km'
+    # latitude,longitude,radius for melbourne
+    # geocode = '-37.813611,144.963056,20km'
 
     try:
-        # just in case if there is a problem with the loop for search_tweets
-        # while False:
-        #     print('search started')
-        #     searchTweets = SearchTweet(api=api, file='search.json')
-        #     searchTweets.search(q=query,lang='en',geocode=geocode,limit=lim)
-
         print('search started')
         # if you want to store them to local file as well, specify filename with file='XXX.json'
-        searchTweets = SearchTweet(api=api,couchdb_server='http://admin:admin@172.26.132.194:5984/',
-                                   db_name=args.dbname,file=args.local)
+        # if you want to test harvester please change IP address
+        searchTweets = SearchTweet(api=api, couchdb_server='http://admin:admin@172.26.132.194:5984/',
+                                   db_name=dbname, file=args.local)
         searchTweets.search(q=query, lang='en', geocode=geocode, limit=args.limit)  # limit = lim
 
     except KeyboardInterrupt:
