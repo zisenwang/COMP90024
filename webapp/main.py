@@ -4,7 +4,7 @@ from backend_scripts import emotion, word_cloud, couchDbHandler, tweets_amount, 
     suburb_amount
 from datetime import datetime, timedelta
 
-PORT = 8005
+PORT = 8000
 app = Flask(__name__)
 
 app.debug = True
@@ -38,7 +38,7 @@ def before_first_request():
     CITY_LIST = ['melbourne', 'sydney', 'brisbane']
     COUCH_DB = couchDbHandler.CouchDB(couchDbHandler.DB_INFO)
     SUB_AMOUNT = suburb_amount.SuburbAmount(COUCH_DB)
-    #SUB_WORD_CLOUD = word_cloud.word_cloud(COUCH_DB, "old_tweets_labels", KEYWORD)
+    SUB_WORD_CLOUD = word_cloud.word_cloud(COUCH_DB, "old_tweets_labels", KEYWORD)
     end = datetime.now()
     print("Preloading Completed! Current time: ", end)
     print("Cost time: ", end-start)
