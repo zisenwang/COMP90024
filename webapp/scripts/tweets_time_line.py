@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from search_content import search_content
+import search_content
 
 
 def tweets_time_line(couchdb, date, lst, keyword):

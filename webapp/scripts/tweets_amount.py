@@ -1,4 +1,4 @@
-from search_content import search_content
+import search_content
 
 
 def tweets_amount(couchdb, db_name, keyword):

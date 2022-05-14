@@ -2,7 +2,7 @@
 # input: view name
 # output: json
 import requests
-from search_content import search_content
+import search_content
 from datetime import datetime
 
 stopwords_list = requests.get(

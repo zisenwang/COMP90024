@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b762cc69-b56f-47d5-a086-62d459db8a24" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/emotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/emotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/suburb_amount.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/suburb_amount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/suburb_emotion_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/suburb_emotion_bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/tweets_amount.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/tweets_amount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/tweets_amount_city.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/tweets_amount_city.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/tweets_time_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/tweets_time_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/scripts/word_cloud.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
