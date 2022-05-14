@@ -1,4 +1,4 @@
-from webapp.scripts import couchDbHandler
+import couchDbHandler
 
 
 class SuburbAmount:
