@@ -1,6 +1,6 @@
 from flask import render_template, request
 from flask import Flask
-from scripts import emotion, word_cloud, couchDbHandler, tweets_amount, tweets_time_line, suburb_emotion_bar, \
+from backend_scripts import emotion, word_cloud, couchDbHandler, tweets_amount, tweets_time_line, suburb_emotion_bar, \
     suburb_amount
 from datetime import datetime, timedelta
 

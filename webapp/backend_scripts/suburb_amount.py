@@ -1,4 +1,4 @@
-import couchDbHandler
+from backend_scripts import couchDbHandler
 
 
 class SuburbAmount:

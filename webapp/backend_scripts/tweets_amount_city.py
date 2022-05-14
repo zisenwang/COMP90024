@@ -1,5 +1,5 @@
-from couchDbHandler import CouchDB
-import search_content
+from backend_scripts.couchDbHandler import CouchDB
+from backend_scripts import search_content
 
 def tweets_amount_city(db_name, keyword):
     a = CouchDB()

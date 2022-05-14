@@ -1,4 +1,4 @@
-import search_content
+from backend_scripts import search_content
 
 
 def emotion(couchdb, db_name, keyword):
