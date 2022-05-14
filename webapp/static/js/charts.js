@@ -285,7 +285,7 @@ function createBarChart(id, url) {
     });
     option = {
         title: {
-            text: 'Emotion Over Cities',
+            text: 'Emotion Over Suburbs',
             left: 'center',
             textStyle: {
                 fontSize: 20,
@@ -367,7 +367,7 @@ function updateBarChart(url) {
             zList = res.values2;
             option = {
                 title: {
-                    text: 'Emotion Over Cities',
+                    text: 'Emotion Over Suburbs',
                     left: 'center',
                     textStyle: {
                         fontSize: 20,
@@ -791,7 +791,7 @@ function createSunburst(id, url) {
             min: 0,
             max: 100,
             inRange: {
-                color: ['#1a447d', 'rgba(248, 246, 246, 1)', '#d05015']
+                color: ['#1a447d', '#d0c7c5', '#d05015']
             }
         },
         series: {
@@ -799,7 +799,7 @@ function createSunburst(id, url) {
             data: sections,
             radius: ['15%', '90%'],
             label: {
-                rotate: 'radial',
+                rotate: 'tangential',
                 color:'rgba(248, 246, 246, 1)'
             },
             itemStyle: {
@@ -842,7 +842,7 @@ function updateSunburst(url) {
                     min: 0,
                     max: 100,
                     inRange: {
-                        color: ['#2F93C8', 'rgba(248, 246, 246, 1)', '#F98862']
+                        color: ['#1a447d', '#d0c7c5', '#d05015']
                     }
                 },
                 series: {
