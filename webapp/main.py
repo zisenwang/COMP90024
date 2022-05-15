@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 PORT = 8000
 app = Flask(__name__)
 
-app.debug = True
+#app.debug = True
 CITY_LIST = []
 COUCH_DB = None
 SCENARIO = ''
@@ -319,4 +319,4 @@ def search_cloud():
 
 if __name__ == '__main__':
 
-    app.run(port=PORT, debug=True,host='0.0.0.0')
+    app.run(port=PORT, host='0.0.0.0')
