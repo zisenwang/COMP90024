@@ -38,7 +38,7 @@
     chdir: '/home/ubuntu/COMP90024'
 
 - name: git pull lastest repo
-  shell: git pull origin crawler:branch
+  shell: git pull origin
   args:
     chdir: '/home/ubuntu/COMP90024/COMP90024'
     
