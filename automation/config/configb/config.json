@@ -1,0 +1,26 @@
+{
+    "API": {
+        "api_key": "",
+        "api_secret": "",
+        "access_token": "",
+        "access_token_secret": "",
+        "bearer_token": ""
+    },
+    "KEY WORDS":
+        ["brisbane","covid","-filter:retweets"],
+    "LOCATIONS": {
+        "coordinates": [
+                -27.467778,
+                153.028056
+            ],
+            "bounding_box": [
+                152.668522848,
+                -27.767440994,
+                153.31787024,
+                -26.996844991
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "brisbane"
+
+}
