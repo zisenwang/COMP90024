@@ -91,7 +91,8 @@ def main(file):
 
 if __name__ == '__main__':
     # db = couchdb.Server('http://admin:admin@172.26.132.194:5984/').create('old_tweets_labels')
-    main('/Users/wsx/Desktop/twitter-melb.json')
+    main('./twitter-melb.json')
+
 
     # db1 = couchdb.Server('http://admin:admin@127.0.0.1:5984/')['old_tweets']
     # db2 = couchdb.Server('http://admin:admin@172.26.132.194:5984/').create('old_tweets')
