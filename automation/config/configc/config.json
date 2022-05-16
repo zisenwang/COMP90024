@@ -1,0 +1,25 @@
+{
+    "API": {
+        "api_key": "",
+        "api_secret": "",
+        "access_token": "",
+        "access_token_secret": "",
+        "bearer_token": ""
+    },
+    "KEY WORDS":
+        ["sydney","covid","-filter:retweets"],
+    "LOCATIONS": {
+        "coordinates": [
+                -33.865,
+                151.209444
+            ],
+            "bounding_box": [
+                150.520928608,
+                -34.1183470085,
+                151.343020992,
+                -33.578140996
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "sydney"
+}

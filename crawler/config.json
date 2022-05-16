@@ -1,0 +1,25 @@
+{
+    "API": {
+        "api_key": "",
+        "api_secret": "",
+        "access_token": "",
+        "access_token_secret": "",
+        "bearer_token": ""
+    },
+    "KEY WORDS":
+        ["melbourne","covid"],
+    "LOCATIONS": {
+        "coordinates": [
+                -37.813611,
+                144.963056
+            ],
+            "bounding_box": [
+                144.593741856,
+                -38.433859306,
+                145.512528832,
+                -37.5112737225
+            ],
+            "scope": "20km"
+    },
+    "DBNAME": "melbourne"
+}

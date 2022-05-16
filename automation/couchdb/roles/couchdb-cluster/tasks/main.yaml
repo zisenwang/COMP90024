@@ -1,0 +1,46 @@
+---
+- name: Enable couchdb cluster
+  become: yes
+  uri:
+    url: http://{{ groups['MASTER_NODE'][0] }}:5984/_cluster_setup
+    method: POST
+    user: "{{ username }}"
+    password: "{{ password }}"
+    force_basic_auth: yes
+    return_content: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\": \"enable_cluster\", \"bind_address\": \"0.0.0.0\", \"username\":\"{{ username }}\", \"password\": \"{{ password }}\", \"port\": \"5984\", \"remote_node\": \"{{ inventory_hostname }}\", \"node_count\": \"3\",\"remote_current_user\": \"{{ username }}\", \"remote_current_password\":\"{{ password }}\"}"
+
+- name: Add nodes to couchdb cluster
+  become: yes
+  uri:
+    url: http://{{ groups['MASTER_NODE'][0] }}:5984/_cluster_setup
+    method: POST
+    user: "{{ username }}"
+    password: "{{ password }}"
+    force_basic_auth: yes
+    return_content: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\":\"add_node\",\"host\":\"{{ inventory_hostname }}\",\"port\":\"5984\",\"username\":\"{{ username }}\",\"password\":\"{{ password }}\"}"
+
+
+- name: Finish cluster
+  become: yes
+  uri:
+    url: http://{{ groups['MASTER_NODE'][0] }}:5984/_cluster_setup
+    method: POST
+    user: "{{ username }}"
+    password: "{{ password }}"
+    force_basic_auth: yes
+    return_content: yes
+    headers:
+      Content-Type: "application/json"
+    status_code: 200, 201
+    body_format: json
+    body: "{\"action\":\"finish_cluster\"}"

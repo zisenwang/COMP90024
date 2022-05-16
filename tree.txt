@@ -1,0 +1,276 @@
+.
+├── Report.pdf
+├── automation
+│   ├── clear_none.sh
+│   ├── config
+│   │   ├── COMP90024.pem
+│   │   ├── configa
+│   │   │   └── config.json
+│   │   ├── configb
+│   │   │   └── config.json
+│   │   ├── configc
+│   │   │   └── config.json
+│   │   ├── inventory
+│   │   │   └── hosts
+│   │   └── unimelb-COMP90024-2022-grp-19-openrc.sh
+│   ├── couchdb
+│   │   ├── couchdb.yaml
+│   │   ├── host_vars
+│   │   │   └── couchdb.yaml
+│   │   ├── roles
+│   │   │   ├── common
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── couchdb-cluster
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── couchdb-start
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   └── docker
+│   │   │       └── tasks
+│   │   │           └── main.yaml
+│   │   └── run-wp.sh
+│   ├── crawler
+│   │   ├── crawler.yaml
+│   │   ├── host_vars
+│   │   │   └── config.yaml
+│   │   ├── restart-crawler.yaml
+│   │   ├── restart.sh
+│   │   ├── roles
+│   │   │   ├── crawler-restart
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── crawler-setup-a
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── crawler-setup-b
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── crawler-setup-c
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   └── crawler-stop
+│   │   │       └── tasks
+│   │   │           └── main.yaml
+│   │   ├── run-harvesters.sh
+│   │   ├── stop-crawler.yaml
+│   │   └── stop.sh
+│   ├── mrc
+│   │   ├── host_vars
+│   │   │   └── nectar.yaml
+│   │   ├── nectar.yaml
+│   │   ├── roles
+│   │   │   ├── openstack-common
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── openstack-instance
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── openstack-security-group
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   ├── openstack-volume
+│   │   │   │   └── tasks
+│   │   │   │       └── main.yaml
+│   │   │   └── openstack-volume-snapshot
+│   │   │       └── tasks
+│   │   │           └── main.yaml
+│   │   └── run-nectar.sh
+│   └── webapp
+│       ├── Dockerfile
+│       ├── docker-compose.yml
+│       ├── host_vars
+│       │   └── webapp.yaml
+│       ├── requirements.txt
+│       ├── roles
+│       │   ├── common
+│       │   │   └── tasks
+│       │   │       └── main.yaml
+│       │   ├── deploy-webapp
+│       │   │   └── tasks
+│       │   │       └── main.yaml
+│       │   └── docker
+│       │       └── tasks
+│       │           └── main.yaml
+│       ├── run-webapp.sh
+│       └── webapp.yaml
+├── crawler
+│   ├── Dockerfile
+│   ├── config.json
+│   ├── docker-compose.yml
+│   ├── english
+│   ├── old_run.sh
+│   ├── old_tweets.py
+│   ├── readme.md
+│   ├── requirements.txt
+│   ├── tweepy_search_run.sh
+│   ├── tweepy_stream_run.sh
+│   ├── tweet_harvester_search.py
+│   ├── tweet_harvester_stream.py
+│   ├── utils.py
+│   ├── views.py
+│   └── views_run.sh
+├── readme.txt
+├── tree.txt
+└── webapp
+    ├── MapReduce
+    │   ├── environment_scenario
+    │   │   ├── emotion
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── polarity
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_amount
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_time_line
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   └── word_cloud
+    │   │       ├── map.js
+    │   │       └── reduce.js
+    │   ├── health_scenario
+    │   │   ├── emotion
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── polarity
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_amount
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_time_line
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   └── word_cloud
+    │   │       ├── map.js
+    │   │       └── reduce.js
+    │   ├── house_scenario
+    │   │   ├── emotion
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── polarity
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_amount
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   ├── tweets_time_line
+    │   │   │   ├── map.js
+    │   │   │   └── reduce.js
+    │   │   └── word_cloud
+    │   │       ├── map.js
+    │   │       └── reduce.js
+    │   ├── main.py
+    │   └── suburb
+    │       ├── amount
+    │       │   ├── map.js
+    │       │   └── reduce.js
+    │       └── label
+    │           ├── map.js
+    │           └── reduce.js
+    ├── backend_scripts
+    │   ├── __pycache__
+    │   │   ├── couchDbHandler.cpython-39.pyc
+    │   │   ├── emotion.cpython-39.pyc
+    │   │   ├── search_content.cpython-39.pyc
+    │   │   ├── suburb_amount.cpython-39.pyc
+    │   │   ├── suburb_emotion_bar.cpython-39.pyc
+    │   │   ├── tweets_amount.cpython-39.pyc
+    │   │   ├── tweets_time_line.cpython-39.pyc
+    │   │   └── word_cloud.cpython-39.pyc
+    │   ├── areaLabel.py
+    │   ├── aurinData.py
+    │   ├── couchDbHandler.py
+    │   ├── desktop.ini
+    │   ├── emotion.py
+    │   ├── inner.json
+    │   ├── search_content.py
+    │   ├── suburb_amount.py
+    │   ├── suburb_emotion_bar.py
+    │   ├── tweets_amount.py
+    │   ├── tweets_amount_city.py
+    │   ├── tweets_time_line.py
+    │   └── word_cloud.py
+    ├── main.py
+    ├── static
+    │   ├── css
+    │   │   ├── About.css
+    │   │   ├── Blog-Template.css
+    │   │   ├── Contact.css
+    │   │   ├── Home.css
+    │   │   ├── Page-Password-Template.css
+    │   │   ├── Post-Template.css
+    │   │   ├── bootstrap.min.css
+    │   │   ├── daterangepicker-bs3.css
+    │   │   ├── font-awesome.min.css
+    │   │   ├── jsCalendar.css
+    │   │   ├── main.css
+    │   │   └── nicepage.css
+    │   ├── font
+    │   │   ├── JTURjIg1_i6t8kCHKm45_dJE3g3D_u50.woff2
+    │   │   ├── JTURjIg1_i6t8kCHKm45_dJE3gTD_u50.woff2
+    │   │   ├── JTURjIg1_i6t8kCHKm45_dJE3gbD_u50.woff2
+    │   │   ├── JTURjIg1_i6t8kCHKm45_dJE3gfD_u50.woff2
+    │   │   ├── JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2
+    │   │   ├── JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2
+    │   │   ├── JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2
+    │   │   ├── JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2
+    │   │   ├── JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2
+    │   │   ├── JTUSjIg1_i6t8kCHKm459Wlhyw.woff2
+    │   │   ├── Simple-Line-Icons.eot
+    │   │   ├── Simple-Line-Icons.ttf
+    │   │   ├── Simple-Line-Icons.woff
+    │   │   ├── fontawesome-webfont.eot
+    │   │   ├── fontawesome-webfont.ttf
+    │   │   ├── fontawesome-webfont.woff
+    │   │   ├── glyphicons-halflings-regular.eot
+    │   │   ├── glyphicons-halflings-regular.ttf
+    │   │   ├── glyphicons-halflings-regular.woff
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2
+    │   │   ├── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2
+    │   │   └── memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2
+    │   ├── images
+    │   │   ├── 041261976a235beeb41aa9299b1287ad.jpg
+    │   │   ├── 1.jpeg
+    │   │   ├── 1287670.jpg
+    │   │   ├── 2.jpeg
+    │   │   ├── 3.jpeg
+    │   │   ├── 4.jpeg
+    │   │   ├── UniMelb_WEB1.jpg
+    │   │   ├── cityscape-of-melbourne-city-of-australia-during-the-sunset--873409300-8db98cef20b44200abfb339188d801f7.jpg
+    │   │   ├── default-logo.png
+    │   │   ├── mel_map.svg
+    │   │   └── vcvv-min.jpg
+    │   └── js
+    │       ├── app.js
+    │       ├── charts.js
+    │       ├── echarts-wordcloud.js
+    │       ├── echarts-wordcloud.js.map
+    │       ├── echarts-wordcloud.min.js
+    │       ├── echarts-wordcloud.min.js.map
+    │       ├── echarts.js
+    │       ├── jquery-1.11.1.min.js
+    │       ├── jquery-ui.js
+    │       ├── jquery.js
+    │       ├── jquery.min.js
+    │       ├── jquery.navgoco.min.js
+    │       ├── jsCalendar.datepicker.js
+    │       ├── jsCalendar.datepicker.min.js
+    │       ├── jsCalendar.js
+    │       └── nicepage.js
+    └── templates
+        ├── index.html
+        ├── main.html
+        ├── page.html
+        ├── search engine.html
+        └── suburb.html
+
+84 directories, 190 files
