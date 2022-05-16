@@ -1,1 +1,0 @@
-Most of our codes are programmed and tested on MacOS. If you unzip the file on windows and find that there is some unkown file, please just ignore them. For all of the needed files of our project, please refer to the tree.txt in this folder to see the structure.
